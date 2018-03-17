@@ -1,0 +1,10 @@
+body{
+    margin:0px auto;
+    max-width:600px;
+}
+a:active,a:link,a:hover,a:visited{
+    color:blue;
+}
+p{
+    margin-left:60px;
+}

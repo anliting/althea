@@ -1,0 +1,13 @@
+{
+    "port":80,
+    "ssl":null,
+    "root":"/",
+    "serverId":1,
+    "useCache":true,
+    "safetyFactor":128,
+    "'hostname":"127.0.0.1",
+    "pathToUsersFiles":"usersFiles",
+    "pathToPlugins":"plugins",
+    "pathToDbBackup":"dbBackup",
+    "backup":false
+}

@@ -1,0 +1,23 @@
+{
+    "name":"althea",
+    "version":"0.0.0",
+    "description":"Althea",
+    "repository":{
+        "type":"git",
+        "url":"https://github.com/anliting/althea.git"
+    },
+    "license":"MIT",
+    "dependencies":{
+        "diskspace":    "*",
+        "entities":     "*",
+        "etag":         "*",
+        "events":       "*",
+        "formidable":   "*",
+        "gm":           "*",
+        "mime":         "*",
+        "mysql2":       "*",
+        "mz":           "*",
+        "simple-git":   "*",
+        "ws":           "*"
+    }
+}
