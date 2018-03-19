@@ -1,4 +1,4 @@
-import { Site, dom, html } from '/lib/core.static.js';
+import { dom, html, Site } from '/lib/core.static.js';
 
 function PluginsPage(site){
     this._site=site;
@@ -255,7 +255,7 @@ var style = `.root{
 .page{
     padding:4px;
 }
-`;
+`
 
 function ControlPanel(site){
     let
@@ -315,8 +315,10 @@ ControlPanel.prototype.createUi=function(){
 ControlPanel.style=dom.style(style);
 
 dom.head(ControlPanel.style);
-let site=new Site;
-let settings=new ControlPanel(site);(async()=>{
+let
+    site=new Site,
+    settings=new ControlPanel(site)
+;(async()=>{
     await settings.loadPlugins;
     dom.body(settings.createUi());
 })();

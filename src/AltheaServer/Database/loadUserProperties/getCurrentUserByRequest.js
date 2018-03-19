@@ -8,7 +8,7 @@ function getCurrentUserByRequest(req){
         let cookie=getCookieOfRequest(req)
         if(!('altheaLoginSession' in cookie))
             return 1
-        loginSession=cookie.altheaLoginSession.split('-')
+        loginSession=cookie.altheaLoginSession[0].split('-')
         if(
             loginSession.length!=2||
             !type.stringIsInteger(loginSession[0])

@@ -1,4 +1,5 @@
 import { EventEmmiter, dom, integerBinarySearch, path, uri } from 'https://gitcdn.link/cdn/anliting/simple.js/55124630741399dd0fcbee2f0396642a428cdd24/src/simple.static.js';
+export { EventEmmiter, path, uri } from 'https://gitcdn.link/cdn/anliting/simple.js/55124630741399dd0fcbee2f0396642a428cdd24/src/simple.static.js';
 
 function AltheaObject(io,id){
     this._io=io;
@@ -67,7 +68,7 @@ var style = `
         height:2px;
         background:gray;
     }
-`;
+`
 
 function createForeground(){
     return this('div',div=>{
@@ -127,7 +128,7 @@ async function getFile(e){
     return e.input.files
 }
 
-var dom$1 = Object.assign(dom,{createFileButton,createBF});
+var dom$1 = Object.assign(dom,{createFileButton,createBF})
 
 function View(progress){
     this._progress=progress;
@@ -222,7 +223,7 @@ var docTrans = doc=>{
     for(let i in doc)if(i!='function')
         res.arguments[i]=doc[i];
     return res
-};
+}
 
 function toFormData(doc){
     let formdata=new FormData;
@@ -239,9 +240,9 @@ var post = doc=>{
             req.readyState==4&&req.status==200&&
                 rs(JSON.parse(req.responseText))
     )
-};
+}
 
-var send = function(doc){
+function send(doc){
     doc=docTrans(doc);
     doc.port=this._sendingPortNumber++;
     this._sharedWorkerPort.postMessage(doc);
@@ -249,7 +250,7 @@ var send = function(doc){
         this._onMessage[doc.port]=doc=>
             doc.error!=undefined?rj(doc.error):rs(doc.value)
     )
-};
+}
 
 function User(){
     AltheaObject.apply(this,arguments);
@@ -309,8 +310,8 @@ User.prototype.createUi=async function(cu){
     )
 };
 
-var login = async(site,usr,pwd,kmli)=>{
-    let res=await site.send({
+async function login(usr,pwd,kmli){
+    let res=await this.send({
         function:'login',
         usr,
         pwd
@@ -318,12 +319,12 @@ var login = async(site,usr,pwd,kmli)=>{
     if(res==undefined)
         return false
     document.cookie=
-        `altheaLoginSession=${res.id}-${res.pwd};path=/${
-            kmli?`;max-age=${256*365.2564*86400}`:''
+        `altheaLoginSession=${res.id}-${res.pwd}; path=/${
+            kmli?`; max-age=${256*365.2564*86400}`:''
         }`;
-    site._userChange();
+    this._userChange();
     return true
-};
+}
 
 var login$1 = async(site,loginForm)=>{
     let res=await loginForm.login(
@@ -333,7 +334,7 @@ var login$1 = async(site,loginForm)=>{
     );
     if(!res)
         loginForm.failedDiv.style.display='';
-};
+}
 
 function innerFormDiv(site,loginForm){
     let div=dom$1.div(
@@ -416,11 +417,11 @@ var loginForm = {get(){
     loginForm.node=bF.node;
     bF.on('backClick',e=>loginForm.emit('backClick',e));
     return loginForm
-}};
+}}
 
 var currentUser = {async get(){
     return this.getUser(await this.send('getCurrentUser'))
-}};
+}}
 
 function loadUserProperties(o){
     Object.defineProperty(o,'showLoginForm',{get(){
@@ -444,12 +445,10 @@ function loadUserProperties(o){
         this.send('userChange');
     };
     Object.defineProperty(o,'currentUser',currentUser);
-    o.login=async function(usr,pwd,kmli){
-        return login(this,usr,pwd,kmli||false)
-    };
+    o.login=login;
     Object.defineProperty(o,'loginForm',loginForm);
     Object.defineProperty(o,'logout',{async get(){
-        document.cookie='altheaLoginSession=;path=/;max-age=0';
+        document.cookie='altheaLoginSession=; path=/; max-age=0';
         await this.send('logout');
         this._userChange();
     }});
@@ -561,7 +560,7 @@ Object.defineProperty(browser,'isMobile',{get(){
 }});
 
 var general = ()=>
-    navigator.serviceWorker.register('serviceWorker.static.js');
+    navigator.serviceWorker.register('serviceWorker.static.js')
 
 let hacker={
     processes:[]
@@ -600,7 +599,7 @@ var html = {
         e.innerHTML=s;
         return e.textContent
     }
-};
+}
 
 let f=()=>new Promise(rs=>{
     document.body.appendChild(
@@ -618,13 +617,14 @@ var moduleLoader = ()=>{
     if(!cache)
         cache=f();
     return cache
-};
+}
 
-let root='https://unpkg.com/material-components-web@0.24.0/dist';
-let iconCss='https://fonts.googleapis.com/icon?family=Material+Icons';
-let componentCss=`${root}/material-components-web.min.css`;
-let materialComponentLoaded;
-let materialIconLoaded;
+let
+    root='https://unpkg.com/material-components-web@0.24.0/dist',
+    iconCss='https://fonts.googleapis.com/icon?family=Material+Icons',
+    componentCss=`${root}/material-components-web.min.css`,
+    materialComponentLoaded,
+    materialIconLoaded;
 function material(){
     return Promise.all([
         materialComponent(),
@@ -635,7 +635,7 @@ function materialComponent(){
     if(!materialComponentLoaded)
         materialComponentLoaded=(async()=>{
             let module=await moduleLoader();
-            Promise.all([
+            await Promise.all([
                 (async()=>{
                     dom$1.head(dom$1.style(
                         await module.getByPath(componentCss)
@@ -662,11 +662,11 @@ var material$1 = {
     material,
     materialComponent,
     materialIcon,
-};
+}
 
 var load = Object.assign({
     module: moduleLoader,
-},material$1);
+},material$1)
 
 function order(a,ib,ap){
     post$1(
@@ -711,7 +711,7 @@ var core = {
     order,
     path,
     uri,
-};
+}
 
-export { AltheaObject, EventEmmiter, ImageUploader, Progress, Site, Snapshot, User, res as arg, browser, dom$1 as dom, general, hacker, html, load, order, path, uri };
 export default core;
+export { AltheaObject, ImageUploader, Progress, Site, Snapshot, User, res as arg, browser, dom$1 as dom, general, hacker, html, load, order };

@@ -24,12 +24,10 @@ function loadUserProperties(o){
         this.send('userChange')
     }
     Object.defineProperty(o,'currentUser',currentUser)
-    o.login=async function(usr,pwd,kmli){
-        return login(this,usr,pwd,kmli||false)
-    }
+    o.login=login
     Object.defineProperty(o,'loginForm',loginForm)
     Object.defineProperty(o,'logout',{async get(){
-        document.cookie='altheaLoginSession=;path=/;max-age=0'
+        document.cookie='altheaLoginSession=; path=/; max-age=0'
         await this.send('logout')
         this._userChange()
     }})

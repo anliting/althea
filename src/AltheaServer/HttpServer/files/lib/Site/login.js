@@ -1,5 +1,5 @@
-export default async(site,usr,pwd,kmli)=>{
-    let res=await site.send({
+export default async function(usr,pwd,kmli){
+    let res=await this.send({
         function:'login',
         usr,
         pwd
@@ -7,9 +7,9 @@ export default async(site,usr,pwd,kmli)=>{
     if(res==undefined)
         return false
     document.cookie=
-        `altheaLoginSession=${res.id}-${res.pwd};path=/${
-            kmli?`;max-age=${256*365.2564*86400}`:''
+        `altheaLoginSession=${res.id}-${res.pwd}; path=/${
+            kmli?`; max-age=${256*365.2564*86400}`:''
         }`
-    site._userChange()
+    this._userChange()
     return true
 }
