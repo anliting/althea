@@ -81,4 +81,4 @@ The developers are hard to test <a href=https://www.microsoft.com/en-us/windows/
 </script>
 `
 }
-module.exports=loadModule
+export default loadModule

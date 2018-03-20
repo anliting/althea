@@ -1,5 +1,4 @@
-let getCommitId=require('./getEnvironmentVariables/getCommitId')
-module.exports=getEnvironmentVariables
+import getCommitId from './getEnvironmentVariables/getCommitId'
 async function getEnvironmentVariables(althea){
     let
         res=loadFromDb(althea),
@@ -24,3 +23,4 @@ async function loadFromDb(althea){
     rows.map(e=>res[e.key]=e.value)
     return res
 }
+export default getEnvironmentVariables

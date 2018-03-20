@@ -1,6 +1,7 @@
+import fs from 'fs'
+import readline from 'readline'
 let
-    fs=require('fs'),
-    rl=require('readline').createInterface({
+    rl=readline.createInterface({
         input:process.stdin,
         output:process.stdout
     }),

@@ -1,20 +1,17 @@
-let
-    fs=             require('fs'),
-    EventEmmiter=   require('events'),
-    pagemodules=    require('./HttpServer/pagemodules'),
-    http,
-    http2
-module.exports=HttpServer
+import fs from              'fs'
+import EventEmmiter from    'events'
+import http from            'http'
+import http2 from           'http2'
+import pagemodules from     './HttpServer/pagemodules'
+import _handleRequest from  './HttpServer/prototype._handleRequest'
 function HttpServer(althea){
     EventEmmiter.call(this)
     this.althea=althea
     this.pagemodules=Object.create(pagemodules)
     this.plugins=[]
     if(!this.althea.config.tls){
-        http=http||require('http')
         this.rawHttpServer=http.createServer()
     }else{
-        http2=http2||require('http2')
         this.rawHttpServer=http2.createServer({
             key:    fs.readFileSync(this.althea.config.tls.key),
             cert:   fs.readFileSync(this.althea.config.tls.cert),
@@ -42,11 +39,11 @@ HttpServer.prototype.addPagemodule=function(k,v){
     else if(typeof k=='string')
         this.pagemodules[k]=v
 }
-HttpServer.prototype._handleRequest=
-    require('./HttpServer/prototype._handleRequest'),
+HttpServer.prototype._handleRequest=_handleRequest
 Object.defineProperty(HttpServer.prototype,'listen',{get(){
     this.rawHttpServer.listen(
         this.althea.config.port,
         this.althea.config.hostname
     )
 }})
+export default HttpServer
