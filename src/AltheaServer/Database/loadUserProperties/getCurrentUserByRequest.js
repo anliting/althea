@@ -5,7 +5,13 @@ module.exports=getCurrentUserByRequest
 function getCurrentUserByRequest(req){
     let loginSession
     if((()=>{
-        let cookie=getCookieOfRequest(req)
+        let cookie
+        try{
+            cookie=getCookieOfRequest(req)
+        }catch(e){
+            if(e.key=='notCookieString')
+                return 1
+        }
         if(!('altheaLoginSession' in cookie))
             return 1
         loginSession=cookie.altheaLoginSession[0].split('-')
