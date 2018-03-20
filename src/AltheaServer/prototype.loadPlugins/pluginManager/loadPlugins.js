@@ -2,7 +2,6 @@ let
     fs=             require('mz/fs'),
     git=            require('simple-git'),
     updateDatabase= require('./loadPlugins/updateDatabase')
-module.exports=loadPlugins
 function loadPlugins(althea,plugins){
     function AltheaForPlugin(pluginId){
         this._pluginId=pluginId
@@ -76,3 +75,4 @@ async function fileExist(path){
     }
     return true
 }
+module.exports=loadPlugins
