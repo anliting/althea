@@ -1,5 +1,4 @@
-let fs=require('fs')
-module.exports=readConfig
+import fs from  'fs'
 function readConfig(path){
     try{
         return JSON.parse(fs.readFileSync(path).toString())
@@ -7,3 +6,4 @@ function readConfig(path){
         return {}
     }
 }
+export default readConfig

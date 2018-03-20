@@ -1,12 +1,14 @@
-let
-    Database=           require('./AltheaServer/Database'),
-    HttpServer=         require('./AltheaServer/HttpServer'),
-    WsServer=           require('./AltheaServer/WsServer'),
-    fillMissingConfig=  require('./AltheaServer/fillMissingConfig'),
-    getEnvironmentVariables=
-        require('./AltheaServer/getEnvironmentVariables'),
-    queryFunctions=     require('./AltheaServer/queryFunctions')
-module.exports=AltheaServer
+import fs from                  'mz/fs'
+import Database from            './AltheaServer/Database'
+import HttpServer from          './AltheaServer/HttpServer'
+import WsServer from            './AltheaServer/WsServer'
+import fillMissingConfig from   './AltheaServer/fillMissingConfig'
+import getEnvironmentVariables from
+    './AltheaServer/getEnvironmentVariables'
+import queryFunctions from      './AltheaServer/queryFunctions'
+import type from                './anliting/type'
+import loadPlugins from         './AltheaServer/prototype.loadPlugins'
+import loadModule from          './AltheaServer/prototype.loadModule'
 function AltheaServer(config,dbconfig){
     this.config=config
     fillMissingConfig(this.config)
@@ -16,12 +18,8 @@ function AltheaServer(config,dbconfig){
     this.queryFunctions=    Object.create(queryFunctions)
     this.load=createLoad.call(this)
 }
-let
-    fs=                 require('mz/fs')
 AltheaServer.prototype.lib={
-    anliting:{
-        type:require('./anliting/type')
-    }
+    anliting:{type}
 }
 AltheaServer.prototype.ensureDirectory=function(path){
     return fs.mkdir(path).catch(e=>{
@@ -38,10 +36,8 @@ AltheaServer.prototype.addQueryFunction=function(k,v){
 AltheaServer.prototype.allowOrigin=function(envVars,origin){
     return origin==undefined||origin==envVars.trustedOrigin
 }
-AltheaServer.prototype.loadPlugins=
-    require('./AltheaServer/prototype.loadPlugins')
-AltheaServer.prototype.loadModule=
-    require('./AltheaServer/prototype.loadModule')
+AltheaServer.prototype.loadPlugins=loadPlugins
+AltheaServer.prototype.loadModule=loadModule
 async function createLoad(){
     await this.database.load
     this.httpServer=    new HttpServer(this)
@@ -58,3 +54,4 @@ async function createLoad(){
     ])
     await this.httpServer.listen
 }
+export default AltheaServer
