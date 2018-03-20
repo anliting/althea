@@ -1,4 +1,13 @@
-module.exports=async function(username,password){
+async function newUser(username){
+    let res=await this.query0(`
+        insert into user
+        set ?
+    `,{
+        username
+    })
+    return res.insertId
+}
+export default async function(username,password){
     try{
         let id=await newUser.call(this,username)
         let user=await this.getUser(id)
@@ -11,13 +20,4 @@ module.exports=async function(username,password){
         }
         throw err
     }
-}
-async function newUser(username){
-    let res=await this.query0(`
-        insert into user
-        set ?
-    `,{
-        username
-    })
-    return res.insertId
 }

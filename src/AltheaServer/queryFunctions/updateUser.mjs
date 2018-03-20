@@ -1,6 +1,5 @@
-let
-    type=require('../../anliting/type')
-module.exports=async(opt,env)=>{
+import type from    '../../anliting/type'
+export default async(opt,env)=>{
     opt instanceof Object||0()
     let cu=env.currentUser
     if(!('id' in opt))

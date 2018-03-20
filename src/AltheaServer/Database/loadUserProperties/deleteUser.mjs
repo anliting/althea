@@ -1,4 +1,4 @@
-module.exports=function(id){
+export default function(id){
     if(!(
         Number.isFinite(id)
     ))

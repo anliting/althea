@@ -1,7 +1,5 @@
-let
-    crypto=             require('crypto'),
-    PermissionError=    require('../../PermissionError')
-module.exports=Session
+import crypto from              'crypto'
+import PermissionError from     '../../PermissionError'
 function Session(db,id,id_user,password){
     this._db=db
     this._id=id
@@ -19,3 +17,4 @@ Session.prototype.getUser=async function(password){
         throw PermissionError('Wrong password.')
     return this._db.getUser(this._id_user)
 }
+export default Session

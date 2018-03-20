@@ -1,6 +1,25 @@
-let
-    User=require('./User')
-module.exports=async function(id){
+import User from './User'
+async function getUserData(db,id){
+    return(await db.query0(`
+        select
+            username,
+            nickname
+        from user
+        where ?
+    `,{id}))[0]
+}
+function getUserMeta(db,id){
+    return db.query0(`
+        select
+            \`key\`,
+            value
+        from usermeta
+        where ?
+    `,{
+        id_user:id
+    })
+}
+export default async function(id){
     if(!(
         Number.isFinite(id)
     ))
@@ -27,24 +46,4 @@ module.exports=async function(id){
         data.nickname,
         meta
     )
-}
-async function getUserData(db,id){
-    return(await db.query0(`
-        select
-            username,
-            nickname
-        from user
-        where ?
-    `,{id}))[0]
-}
-function getUserMeta(db,id){
-    return db.query0(`
-        select
-            \`key\`,
-            value
-        from usermeta
-        where ?
-    `,{
-        id_user:id
-    })
 }

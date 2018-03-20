@@ -1,4 +1,3 @@
-module.exports=User
 function User(db,id,username,nickname,meta){
     this.db=db
     this.id=id
@@ -37,3 +36,4 @@ User.prototype.set=async function(doc){
         where ?
     `,args)
 }
+export default User

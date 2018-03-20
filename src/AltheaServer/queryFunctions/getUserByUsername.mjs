@@ -1,4 +1,4 @@
-module.exports=async(opt,env)=>{
+export default async(opt,env)=>{
     opt instanceof Object&&
     typeof opt.username=='string'||0()
     return await env.althea.database.getUserIdByUsername(

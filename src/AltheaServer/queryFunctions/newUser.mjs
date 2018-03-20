@@ -1,4 +1,4 @@
-module.exports=async function(opt,env){
+export default async(opt,env)=>{
     opt instanceof Object&&
     typeof opt.username=='string'&&
     opt.username.match(/^[0-9a-z]{1,16}$/)&&

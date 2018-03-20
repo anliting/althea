@@ -1,2 +1,2 @@
-module.exports=(opt,env)=>
+export default(opt,env)=>
     env.althea.database.newImage()

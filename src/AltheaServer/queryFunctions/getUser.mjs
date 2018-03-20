@@ -1,6 +1,5 @@
-let
-    type=require('../../anliting/type')
-module.exports=async(opt,env)=>{
+import type from    '../../anliting/type'
+export default async(opt,env)=>{
     opt instanceof Object&&
     typeof opt.id=='number'&&
     type.isArray(type.isStringValue)(opt.columns)||0()

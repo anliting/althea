@@ -1,6 +1,4 @@
-let
-    Session=    require('./getSession/Session')
-module.exports=getSession
+import Session from './getSession/Session'
 async function getSession(id){
     let row=(await this.query0(`
         select
@@ -23,3 +21,4 @@ async function getSession(id){
         row.password
     )
 }
+export default getSession

@@ -1,11 +1,9 @@
-let
-    RawWsServer=            require('ws').Server,
-    Connection=             require('./WsServer/Connection')
-module.exports=WsServer
+import ws from          'ws'
+import Connection from  './WsServer/Connection'
 function WsServer(althea){
     this._althea=althea
     this.rawWsServer=
-        new RawWsServer({server:this._althea.httpServer.rawHttpServer})
+        new ws.Server({server:this._althea.httpServer.rawHttpServer})
     this.load=(async()=>{
         let envVars=await this._althea.envVars
         this.rawWsServer.on('connection',(cn,req)=>
@@ -31,3 +29,4 @@ WsServer.prototype.handleConnection=function(cn,req,envVars){
         this._althea.database.getCurrentUserByRequest(req)
     )
 }
+export default WsServer

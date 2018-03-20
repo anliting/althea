@@ -1,4 +1,4 @@
-module.exports=async function(opt,env){
+export default async function(opt,env){
     opt instanceof Object&&
     typeof opt.module=='string'||0()
     let rows=await env.althea.database.selectActivatedPlugins()

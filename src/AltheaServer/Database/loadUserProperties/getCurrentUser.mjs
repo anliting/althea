@@ -1,6 +1,4 @@
-let
-    PermissionError=    require('../PermissionError')
-module.exports=getCurrentUser
+import PermissionError from '../PermissionError'
 async function getCurrentUser(id,password){
 /*
     errno:
@@ -21,3 +19,4 @@ async function getCurrentUser(id,password){
         throw{errno:0,err:e}
     }
 }
+export default getCurrentUser

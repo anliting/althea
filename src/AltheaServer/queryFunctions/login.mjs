@@ -1,4 +1,4 @@
-module.exports=async(opt,env)=>{
+export default async(opt,env)=>{
     opt instanceof Object&&
     typeof opt.usr=='string'&&
     typeof opt.pwd=='string'||0()
