@@ -1,4 +1,3 @@
-module.exports=environmentvariable
 async function environmentvariable(db){
     await db.query(`
         create table environmentvariable (
@@ -24,3 +23,4 @@ async function environmentvariable(db){
         `),
     ])
 }
+export default environmentvariable

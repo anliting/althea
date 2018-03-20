@@ -1,4 +1,3 @@
-module.exports=user
 async function user(db){
     await db.query(`
         create table user (
@@ -31,3 +30,4 @@ async function root(db){
         password:''
     })
 }
+export default user

@@ -1,9 +1,8 @@
-let
-    environmentvariable=    require('./0/environmentvariable'),
-    plugin=                 require('./0/plugin'),
-    user=                   require('./0/user'),
-    usermeta=               require('./0/usermeta')
-module.exports=async db=>{
+import environmentvariable from     './0/environmentvariable'
+import plugin from                  './0/plugin'
+import user from                    './0/user'
+import usermeta from                './0/usermeta'
+export default async db=>{
     await Promise.all([
         environmentvariable(db),
         db.query(`

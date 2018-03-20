@@ -1,4 +1,3 @@
-module.exports=usermeta
 async function usermeta(db){
     await db.query(`
         create table usermeta (
@@ -22,3 +21,4 @@ async function usermeta(db){
             value='1'
     `,db.constants.user.id.anonymous)
 }
+export default usermeta

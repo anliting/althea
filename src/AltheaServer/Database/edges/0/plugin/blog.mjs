@@ -1,4 +1,4 @@
-module.exports=[
+export default[
     {
         isactivated:0,
         name:'blog',

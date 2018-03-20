@@ -1,4 +1,4 @@
-let blog=require('./plugin/blog.js')
+import blog from './plugin/blog'
 let list=[
     {
         isactivated:1,
@@ -154,4 +154,4 @@ async function plugin(db){
         set ?
     `,p)))
 }
-module.exports=plugin
+export default plugin
