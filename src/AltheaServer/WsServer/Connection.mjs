@@ -17,17 +17,21 @@ Connection.prototype.ping=async function(){
     this._send({function:'ping'})
 }
 Connection.prototype._send=function(val){
-    this.wsConnection.send(JSON.stringify(val),e=>{
-        if(e){
-            if(
-                e.code=='EPIPE'||
-                e.message=='not opened'
-            )
-                return
-            console.error('Connection.mjs:',e)
-            throw e
-        }
-    })
+    try{
+        this.wsConnection.send(JSON.stringify(val),e=>{
+            if(e){
+                if(
+                    e.code=='EPIPE'||
+                    e.message=='not opened'
+                )
+                    return
+                console.error(e,Error())
+                throw e
+            }
+        })
+    }catch(e){
+        console.error(e,Error())
+    }
 }
 Connection.prototype.login=function(id,pwd){
     this._currentUserPromise=this.althea.database.getCurrentUser(id,pwd)
