@@ -16,7 +16,7 @@ function Connection(
 Connection.prototype.ping=async function(){
     this._send({function:'ping'})
 }
-Connection.prototype._send=function send(val){
+Connection.prototype._send=function(val){
     this.wsConnection.send(JSON.stringify(val),e=>{
         if(e){
             if(
@@ -24,6 +24,7 @@ Connection.prototype._send=function send(val){
                 e.message=='not opened'
             )
                 return
+            console.error('Connection.mjs:',e)
             throw e
         }
     })
