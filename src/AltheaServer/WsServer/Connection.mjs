@@ -25,12 +25,11 @@ Connection.prototype._send=function(val){
                     e.message=='not opened'
                 )
                     return
-                console.error(e,Error())
+                console.error(Object.entries(e))
                 throw e
             }
         })
     }catch(e){
-        console.error(e,Error())
     }
 }
 Connection.prototype.login=function(id,pwd){
