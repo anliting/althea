@@ -23,6 +23,7 @@ function WsServer(althea){
 WsServer.prototype._handleConnection=function(cn,req,envVars){
     if(!this._althea.allowOrigin(envVars,req.headers.origin))
         return cn.terminate()
+    cn.setMaxListeners(0)
     this.alive.set(cn,1)
     cn.on('pong',()=>{
         this.alive.set(cn,1)
