@@ -19,10 +19,13 @@ WsServer.prototype.handleConnection=function(cn,req,envVars){
         return cn.terminate()
     if(this._debug){
         this._debug.connectionCount++
-        console.log('connection count:',this._debug.connectionCount)
+        
+        console.log(`connection from ${req.connection.remoteAddress} opened`)
+        console.log(`count: ${this._debug.connectionCount}`)
         cn.on('close',e=>{
             this._debug.connectionCount--
-            console.log('connection count:',this._debug.connectionCount)
+            console.log(`connection from ${req.connection.remoteAddress} closed`)
+            console.log(`count: ${this._debug.connectionCount}`)
         })
     }
     cn.on('error',e=>{
