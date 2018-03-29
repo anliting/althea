@@ -2,6 +2,9 @@ import ws from          'ws'
 import Connection from  './WsServer/Connection'
 function WsServer(althea){
     this._althea=althea
+    this._debug={
+        connectionCount:0,
+    }
     this.rawWsServer=
         new ws.Server({server:this._althea.httpServer.rawHttpServer})
     this.load=(async()=>{
@@ -14,6 +17,14 @@ function WsServer(althea){
 WsServer.prototype.handleConnection=function(cn,req,envVars){
     if(!this._althea.allowOrigin(envVars,req.headers.origin))
         return cn.terminate()
+    if(this._debug){
+        this._debug.connectionCount++
+        console.log('connection count:',this._debug.connectionCount)
+        cn.on('close',e=>{
+            this._debug.connectionCount--
+            console.log('connection count:',this._debug.connectionCount)
+        })
+    }
     cn.on('error',e=>{
         if(
             e.code=='ECONNRESET'||
