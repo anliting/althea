@@ -18,8 +18,10 @@ function AltheaServer(config,dbconfig){
     this.queryFunctions=    Object.create(queryFunctions)
     this.load=createLoad.call(this)
 }
-AltheaServer.prototype.end=function(){
-    this.database.end()
+AltheaServer.prototype.end=async function(){
+    await this.wsServer.end()
+    await this.httpServer.end()
+    await this.database.end()
 }
 AltheaServer.prototype.lib={
     anliting:{type}

@@ -44,5 +44,8 @@ WsServer.prototype._handleConnection=function(cn,req,envVars){
     )
 }
 WsServer.prototype.end=function(){
+    return new Promise((rs,rj)=>
+        this.rawWsServer.close(err=>err?rj(err):rs())
+    )
 }
 export default WsServer

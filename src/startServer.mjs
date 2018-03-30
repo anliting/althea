@@ -16,8 +16,8 @@ function main(){
         readConfig('config'),
         readConfig('dbconfig')
     )
-    process.on('SIGTERM',()=>{
-        server.end()
+    process.on('SIGTERM',async()=>{
+        await server.end()
         process.exit()
     })
     return server.load

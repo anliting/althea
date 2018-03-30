@@ -41,7 +41,9 @@ HttpServer.prototype.addPagemodule=function(k,v){
         this.pagemodules[k]=v
 }
 HttpServer.prototype.end=function(){
-    this.rawHttpServer.close()
+    return new Promise((rs,rj)=>
+        this.rawHttpServer.close(err=>err?rj(err):rs())
+    )
 }
 Object.defineProperty(HttpServer.prototype,'listen',{get(){
     this.rawHttpServer.listen(
