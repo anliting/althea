@@ -43,4 +43,6 @@ WsServer.prototype._handleConnection=function(cn,req,envVars){
         this._althea.database.getCurrentUserByRequest(req)
     )
 }
+WsServer.prototype.end=function(){
+}
 export default WsServer

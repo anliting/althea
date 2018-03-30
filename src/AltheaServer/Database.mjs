@@ -43,9 +43,10 @@ Using <code>this._dbconfig=Object.create(dbconfig)</code> instead of <code>this.
 }
 Database.prototype._getVersion=_getVersion
 Database.prototype._setVersion=_setVersion
-loadTransactionProperties(Database.prototype)
-loadUserProperties(Database.prototype)
 Database.prototype.constants=constants
+Database.prototype.end=function(){
+    return this.pool.end()
+}
 Database.prototype.getEnvironmentvariables=getEnvironmentvariables
 Database.prototype.getPlugin=getPlugin
 Database.prototype.getPlugins=getPlugins
@@ -54,4 +55,6 @@ Database.prototype.selectActivatedPlugins=selectActivatedPlugins
 Database.prototype.updateEnvironmentvariableById=
     updateEnvironmentvariableById
 Database.prototype.updatePlugin=updatePlugin
+loadTransactionProperties(Database.prototype)
+loadUserProperties(Database.prototype)
 export default Database
