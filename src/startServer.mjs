@@ -12,8 +12,13 @@ process.argv.slice(2).map(v=>
 :
     calcTime(main).then(console.log)
 function main(){
-    return(new AltheaServer(
+    let server=new AltheaServer(
         readConfig('config'),
         readConfig('dbconfig')
-    )).load
+    )
+    process.on('SIGTERM',()=>{
+        server.end()
+        process.exit()
+    })
+    return server.load
 }
