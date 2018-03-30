@@ -36,7 +36,6 @@ export default async env=>{
     }
     // devAnchor
     //fs.createReadStream(pathToFile,options).pipe(env.response)
-    console.log(`file ${pathToFile} requested, size=${fileStat.size}`)
     let rs=fs.createReadStream(pathToFile,options)
     rs.pipe(env.response)
     let a=[]
