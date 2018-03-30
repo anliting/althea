@@ -43,8 +43,8 @@ export default async env=>{
     rs.on('end',()=>{
         let b=Buffer.concat(a)
         console.log(`file ${pathToFile}, size=${
-            fileStat.size
-        }, result buffer size=${b.length}`)
+            fs.statSync(pathToFile).size
+        }, result buffer size=${b.length},`,options)
     })
     rs.on('error',e=>{
         console.log('error:',e)
