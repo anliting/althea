@@ -19,6 +19,7 @@ function AltheaServer(config,dbconfig){
     this.load=createLoad.call(this)
 }
 AltheaServer.prototype.end=function(){
+    this.database.end()
 }
 AltheaServer.prototype.lib={
     anliting:{type}

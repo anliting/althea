@@ -33,13 +33,16 @@ function HttpServer(althea){
     ])
 }
 Object.setPrototypeOf(HttpServer.prototype,EventEmmiter.prototype)
+HttpServer.prototype._handleRequest=_handleRequest
 HttpServer.prototype.addPagemodule=function(k,v){
     if(typeof k=='function')
         this.plugins.push({test:k,module:v})
     else if(typeof k=='string')
         this.pagemodules[k]=v
 }
-HttpServer.prototype._handleRequest=_handleRequest
+HttpServer.prototype.end=function(){
+    this.rawHttpServer.close()
+}
 Object.defineProperty(HttpServer.prototype,'listen',{get(){
     this.rawHttpServer.listen(
         this.althea.config.port,
