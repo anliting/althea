@@ -34,5 +34,20 @@ export default async env=>{
             fileStat.size
         env.response.writeHead(200,env.headers)
     }
-    fs.createReadStream(pathToFile,options).pipe(env.response)
+    // devAnchor
+    //fs.createReadStream(pathToFile,options).pipe(env.response)
+    console.log(`file ${pathToFile} requested, size=${fileStat.size}`)
+    let rs=fs.createReadStream(pathToFile,options)
+    rs.pipe(env.response)
+    let a=[]
+    rs.on('data',[].push.bind(a))
+    rs.on('end',()=>{
+        let b=Buffer.concat(a)
+        console.log(`file ${pathToFile}, size=${
+            fileStat.size
+        }, result buffer size=${b.length}`)
+    })
+    rs.on('error',e=>{
+        console.log('error:',e)
+    })
 }
