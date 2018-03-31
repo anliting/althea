@@ -9,6 +9,7 @@ let
 export default async env=>{
     let res=await new Promise((rs,rj)=>{
         let form=new formidable.IncomingForm
+        form.maxFileSize=4*2**30
         if(env.config.pathToUpload!=undefined)
             form.uploadDir=env.config.pathToUpload
         form.parse(env.request,(err,fields,files)=>
