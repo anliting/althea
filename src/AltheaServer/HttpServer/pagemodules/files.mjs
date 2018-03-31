@@ -19,34 +19,34 @@ export default async env=>{
     let options={
         highWaterMark
     }
-    if(env.request.headers.range){
+    if((()=>{
+        if(!(
+            env.request.headers.range&&
+            /^bytes=[0-9]+-[0-9]*$/.test(env.request.headers.range)
+        ))
+            return 1
         let
-            start=+env.request.headers.range.substring(6),
-            end=Math.min(start+chunkSize,fileStat.size)
+            match=env.request.headers.range.match(
+                /^bytes=([0-9]+)-([0-9]*)$/
+            ),
+            start=+match[1],
+            end=Math.min(
+                match[2]==''?Infinity:+match[2]+1,
+                start+chunkSize,
+                fileStat.size
+            )
+        if(end<start)
+            return 1
         env.headers['content-length']=end-start
         env.headers['content-range']=
             `bytes ${start}-${end-1}/${fileStat.size}`
         env.response.writeHead(206,env.headers)
         options.start=start
-        options.end=end
-    }else{
+        options.end=end-1
+    })()){
         env.headers['content-length']=
             fileStat.size
         env.response.writeHead(200,env.headers)
     }
-    // devAnchor
-    //fs.createReadStream(pathToFile,options).pipe(env.response)
-    let rs=fs.createReadStream(pathToFile,options)
-    rs.pipe(env.response)
-    let a=[]
-    rs.on('data',[].push.bind(a))
-    rs.on('end',()=>{
-        let b=Buffer.concat(a)
-        console.log(`file ${pathToFile}, size=${
-            fs.statSync(pathToFile).size
-        }, result buffer size=${b.length},`,options)
-    })
-    rs.on('error',e=>{
-        console.log('error:',e)
-    })
+    fs.createReadStream(pathToFile,options).pipe(env.response)
 }
