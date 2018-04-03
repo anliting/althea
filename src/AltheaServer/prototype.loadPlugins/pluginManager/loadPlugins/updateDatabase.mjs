@@ -16,4 +16,4 @@ async function setDbVer(althea,ver){
     data.databaseVersion=ver
     await althea.setData(data)
 }
-module.exports=updateDatabase
+export default updateDatabase

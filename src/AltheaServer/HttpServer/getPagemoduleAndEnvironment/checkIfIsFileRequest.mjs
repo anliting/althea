@@ -1,6 +1,5 @@
-let
-    fs=require('mz/fs')
-module.exports=async(env,decodedPathname)=>{
+import fs from 'mz/fs'
+export default async(env,decodedPathname)=>{
     /*
         1: not file.
         2: is file, in "althea/src/AltheaServer/HttpServer/files/".

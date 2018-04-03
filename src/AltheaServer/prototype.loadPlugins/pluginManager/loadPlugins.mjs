@@ -1,7 +1,6 @@
-let
-    fs=             require('mz/fs'),
-    git=            require('simple-git'),
-    updateDatabase= require('./loadPlugins/updateDatabase')
+import fs from              'mz/fs'
+import git from             'simple-git'
+import updateDatabase from  './loadPlugins/updateDatabase'
 function loadPlugins(althea,plugins){
     function AltheaForPlugin(pluginId){
         this._pluginId=pluginId
@@ -46,7 +45,9 @@ function loadPlugins(althea,plugins){
                     wd=process.cwd(),
                     modulePath=`${wd}${wd!='/'?'/':''}${path}/server`
                 if(await moduleExist(modulePath))
-                    require(modulePath)(new AltheaForPlugin(p.id))
+                    (await import(modulePath)).default(
+                        new AltheaForPlugin(p.id)
+                    )
             }
         }catch(e){
             e.message+=`
@@ -57,9 +58,9 @@ loadPlugins():
         }
     }))
 }
-function moduleExist(p){
+async function moduleExist(p){
     try{
-        require.resolve(p)
+        await import(p)
     }catch(e){
         return
     }
@@ -75,4 +76,4 @@ async function fileExist(path){
     }
     return true
 }
-module.exports=loadPlugins
+export default loadPlugins

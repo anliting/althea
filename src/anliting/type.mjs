@@ -1,9 +1,3 @@
-module.exports={
-    isArray,
-    isObject,
-    isStringValue,
-    stringIsInteger,
-}
 function isArray(f){
     return v=>Array.isArray(v)&&v.every(f)
 }
@@ -15,4 +9,10 @@ function isStringValue(v){
 }
 function stringIsInteger(value){
     return value==parseInt(value,10).toString()
+}
+export default{
+    isArray,
+    isObject,
+    isStringValue,
+    stringIsInteger,
 }
