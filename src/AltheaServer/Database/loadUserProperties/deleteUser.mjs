@@ -1,10 +1,8 @@
-export default function(id){
+export default async function(id){
     if(!(
-        Number.isFinite(id)
+        Number.isInteger(id)&&0<id
     ))
-        return Promise.reject(RangeError(
-            `*id* is not a finite Number value.`
-        ))
+        throw RangeError(`*id* is not a positive integer.`)
     return this.query(`
         delete from user
         where ?

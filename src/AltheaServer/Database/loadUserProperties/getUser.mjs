@@ -21,23 +21,21 @@ function getUserMeta(db,id){
 }
 export default async function(id){
     if(!(
-        Number.isFinite(id)
+        Number.isInteger(id)&&0<id
     ))
-        return Promise.reject(RangeError(
-            `*id* is not a finite Number value.`
-        ))
-    let vals=await Promise.all([
-        getUserData(this,id),
-        getUserMeta(this,id),
-    ])
+        throw RangeError(`*id* is not a positive integer.`)
     let
+        vals=await Promise.all([
+            getUserData(this,id),
+            getUserMeta(this,id),
+        ]),
         data=vals[0],
         meta={}
-    if(data==undefined){
-        let e=RangeError(`*id* is not an user's id.`)
-        e.name='notFound'
-        throw e
-    }
+    if(data==undefined)
+        throw Object.assign(
+            RangeError(`*id* is not an user's id.`),
+            {name,'notFound'}
+        )
     vals[1].map(e=>meta[e.key]=e.value)
     return new User(
         this,
