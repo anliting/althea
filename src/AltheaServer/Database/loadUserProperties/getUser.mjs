@@ -34,7 +34,7 @@ export default async function(id){
     if(data==undefined)
         throw Object.assign(
             RangeError(`*id* is not an user's id.`),
-            {name,'notFound'}
+            {name:'notFound'}
         )
     vals[1].map(e=>meta[e.key]=e.value)
     return new User(
