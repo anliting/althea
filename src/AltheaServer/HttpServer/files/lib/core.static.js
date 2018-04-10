@@ -664,7 +664,7 @@ var material$1 = {
     materialIcon,
 }
 
-var load = Object.assign({},{module: moduleLoader},material$1)
+var load = Object.assign({module: moduleLoader},material$1)
 
 function order(a,ib,ap){
     post$1(
