@@ -2,8 +2,8 @@ function loadModule(main,args,options={}){
     let
         // chrome need 61<= for ES2015 modules
         chromeVersion=61,
-        // firefox is waiting for ES2015 modules
-        firefoxVersion=Infinity,
+        // firefox need 60<= for ES2015 modules
+        firefoxVersion=60,
         // opera need 48<= for ES2015 modules
         operaVersion=48
     return`<script>
