@@ -1,4 +1,4 @@
-import fs from                  'mz/fs'
+import fsPromises from          'fs/promises'
 import Database from            './AltheaServer/Database'
 import HttpServer from          './AltheaServer/HttpServer'
 import WsServer from            './AltheaServer/WsServer'
@@ -27,7 +27,7 @@ AltheaServer.prototype.lib={
     anliting:{type}
 }
 AltheaServer.prototype.ensureDirectory=function(path){
-    return fs.mkdir(path).catch(e=>{
+    return fsPromises.mkdir(path).catch(e=>{
         if(!(e.code=='EEXIST'))
             throw e
     })

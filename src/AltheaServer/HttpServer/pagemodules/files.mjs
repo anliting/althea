@@ -1,5 +1,5 @@
 import etag from    'etag'
-import fs from      'mz/fs'
+import fs from      'fs'
 import mime from    'mime'
 let
     highWaterMark=  2**22,
