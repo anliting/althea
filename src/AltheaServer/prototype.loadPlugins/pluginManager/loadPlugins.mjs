@@ -1,4 +1,4 @@
-import fsPromises from      'fs/promises'
+import fs from              'fs'
 import git from             'simple-git'
 import updateDatabase from  './loadPlugins/updateDatabase'
 function loadPlugins(althea,plugins){
@@ -68,7 +68,7 @@ async function moduleExist(p){
 }
 async function fileExist(path){
     try{
-        await fsPromises.stat(path)
+        await fs.promises.stat(path)
     }catch(e){
         if(e.code=='ENOENT')
             return false

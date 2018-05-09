@@ -1,4 +1,4 @@
-import fsPromises from      'fs/promises'
+import fs from      'fs'
 export default async(env,decodedPathname)=>{
     /*
         1: not file.
@@ -25,7 +25,7 @@ export default async(env,decodedPathname)=>{
 }
 async function checkIfIsFileByPath(path){
     try{
-        let fileStat=await fsPromises.stat(path)
+        let fileStat=await fs.promises.stat(path)
         return{
             isFile:fileStat.isFile(),
             fileStat
