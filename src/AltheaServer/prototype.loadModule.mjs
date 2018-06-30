@@ -1,5 +1,5 @@
 function loadModule(main,args,options={}){
-    let
+    var
         // chrome need 61<= for ES2015 modules
         chromeVersion=61,
         // firefox need 60<= for ES2015 modules
@@ -38,13 +38,17 @@ function loadModule(main,args,options={}){
             document.body.removeChild(script)
     }
     document.body.appendChild(script)
-    ${options.preloadModule?`window.altheaDontGarbageCollect=Promise.all(${
-        JSON.stringify(options.preloadModule)
-    }.map(v=>import(v)))`:''}
+    ${options.preloadModule?
+        `eval(${JSON.stringify(
+            `window.altheaDontGarbageCollect=Promise.all(${
+                JSON.stringify(options.preloadModule)
+            }.map(v=>import(v)))`
+        )})`
+    :''}
     function calcOverrideBS(){
         if(!localStorage.althea)
             return
-        let res
+        var res
         String(localStorage.althea).split(' ').map(p=>{
             if(p=='!bs')
                 res=false
@@ -54,7 +58,7 @@ function loadModule(main,args,options={}){
         return res
     }
     function getVersion(s){
-        let m=navigator.userAgent.toLowerCase().match(
+        var m=navigator.userAgent.toLowerCase().match(
             new RegExp(s+'/([0-9]*)')
         )
         return m&&+m[1]
