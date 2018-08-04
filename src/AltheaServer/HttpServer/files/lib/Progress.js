@@ -1,4 +1,4 @@
-﻿import{EventEmmiter}from 'https://gitcdn.link/cdn/anliting/simple.js/55124630741399dd0fcbee2f0396642a428cdd24/src/simple.static.js'
+﻿import{EventEmmiter}from'https://gitcdn.link/cdn/anliting/simple.js/c38056039008b4889283e9e1451504358263354d/src/simple.static.js'
 import style from './Progress/style.js'
 import View from './Progress/View.js'
 let animationDelay= 256

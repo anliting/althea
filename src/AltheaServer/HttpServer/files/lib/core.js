@@ -1,8 +1,9 @@
 import{
     EventEmmiter,
+    doe,
     path,
     uri,
-}from'https://gitcdn.link/cdn/anliting/simple.js/55124630741399dd0fcbee2f0396642a428cdd24/src/simple.static.js'
+}from'https://gitcdn.link/cdn/anliting/simple.js/c38056039008b4889283e9e1451504358263354d/src/simple.static.js'
 import AltheaObject from    './AltheaObject.js'
 import ImageUploader from   './ImageUploader.js'
 import Progress from        './Progress.js'
@@ -27,6 +28,7 @@ export{
     User,
     arg,
     browser,
+    doe,
     dom,
     general,
     hacker,
@@ -46,6 +48,7 @@ export default{
     User,
     arg,
     browser,
+    doe,
     dom,
     general,
     hacker,
