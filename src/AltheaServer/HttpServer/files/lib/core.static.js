@@ -1,5 +1,5 @@
-import { EventEmmiter, dom, integerBinarySearch, doe, path, uri } from 'https://gitcdn.link/cdn/anliting/simple.js/c38056039008b4889283e9e1451504358263354d/src/simple.static.js';
-export { EventEmmiter, doe, path, uri } from 'https://gitcdn.link/cdn/anliting/simple.js/c38056039008b4889283e9e1451504358263354d/src/simple.static.js';
+import { EventEmmiter, dom, integerBinarySearch, doe, path, uri } from 'https://gitcdn.link/cdn/anliting/simple.js/d76165db0cfc5b4c71786bf5a5f2e51503943294/src/simple.static.js';
+export { EventEmmiter, doe, path, uri } from 'https://gitcdn.link/cdn/anliting/simple.js/d76165db0cfc5b4c71786bf5a5f2e51503943294/src/simple.static.js';
 
 function AltheaObject(io,id){
     this._io=io;

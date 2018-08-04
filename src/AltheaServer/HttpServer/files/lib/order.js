@@ -1,4 +1,4 @@
-import{integerBinarySearch}from'https://gitcdn.link/cdn/anliting/simple.js/c38056039008b4889283e9e1451504358263354d/src/simple.static.js'
+import{integerBinarySearch}from'https://gitcdn.link/cdn/anliting/simple.js/d76165db0cfc5b4c71786bf5a5f2e51503943294/src/simple.static.js'
 function order(a,ib,ap){
     post(
         a.map(async(p,i)=>({
