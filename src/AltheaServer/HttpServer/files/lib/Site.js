@@ -2,7 +2,7 @@ import docTrans from './Site/docTrans.js'
 import post from './Site/prototype.post.js'
 import send from './Site/prototype.send.js'
 import loadUserProperties from './Site/loadUserProperties.js'
-import{EventEmmiter}from'https://gitcdn.link/cdn/anliting/simple.js/d76165db0cfc5b4c71786bf5a5f2e51503943294/src/simple.static.js'
+import{EventEmmiter}from'https://gitcdn.link/cdn/anliting/simple.js/09b9cd311f438c07fd1ac0ead044aed97158faf3/src/simple.static.js'
 function evalImport(s){
     return eval(`import(${JSON.stringify(s)})`)
 }

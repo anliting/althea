@@ -255,7 +255,7 @@ var style = `.root{
 .page{
     padding:4px;
 }
-`
+`;
 
 function ControlPanel(site){
     let

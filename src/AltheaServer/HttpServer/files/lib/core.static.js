@@ -1,5 +1,5 @@
-import { EventEmmiter, dom, integerBinarySearch, doe, path, uri } from 'https://gitcdn.link/cdn/anliting/simple.js/d76165db0cfc5b4c71786bf5a5f2e51503943294/src/simple.static.js';
-export { EventEmmiter, doe, path, uri } from 'https://gitcdn.link/cdn/anliting/simple.js/d76165db0cfc5b4c71786bf5a5f2e51503943294/src/simple.static.js';
+import { EventEmmiter, dom, integerBinarySearch, doe, path, uri } from 'https://gitcdn.link/cdn/anliting/simple.js/09b9cd311f438c07fd1ac0ead044aed97158faf3/src/simple.static.js';
+export { EventEmmiter, doe, path, uri } from 'https://gitcdn.link/cdn/anliting/simple.js/09b9cd311f438c07fd1ac0ead044aed97158faf3/src/simple.static.js';
 
 function AltheaObject(io,id){
     this._io=io;
@@ -68,7 +68,7 @@ var style = `
         height:2px;
         background:gray;
     }
-`
+`;
 
 function createForeground(){
     return this('div',div=>{
@@ -128,7 +128,7 @@ async function getFile(e){
     return e.input.files
 }
 
-var dom$1 = Object.assign(dom,{createFileButton,createBF})
+var dom$1 = Object.assign(dom,{createFileButton,createBF});
 
 function View(progress){
     this._progress=progress;
@@ -223,7 +223,7 @@ var docTrans = doc=>{
     for(let i in doc)if(i!='function')
         res.arguments[i]=doc[i];
     return res
-}
+};
 
 function toFormData(doc){
     let formdata=new FormData;
@@ -240,7 +240,7 @@ var post = doc=>{
             req.readyState==4&&req.status==200&&
                 rs(JSON.parse(req.responseText))
     )
-}
+};
 
 function send(doc){
     doc=docTrans(doc);
@@ -275,7 +275,7 @@ User.prototype._createA=function(by){
         ));
         return a
     })();
-    return{
+    return {
         a,
         final
     }
@@ -334,7 +334,7 @@ var login$1 = async(site,loginForm)=>{
     );
     if(!res)
         loginForm.failedDiv.style.display='';
-}
+};
 
 function innerFormDiv(site,loginForm){
     let div=dom$1.div(
@@ -417,11 +417,11 @@ var loginForm = {get(){
     loginForm.node=bF.node;
     bF.on('backClick',e=>loginForm.emit('backClick',e));
     return loginForm
-}}
+}};
 
 var currentUser = {async get(){
     return this.getUser(await this.send('getCurrentUser'))
-}}
+}};
 
 function loadUserProperties(o){
     Object.defineProperty(o,'showLoginForm',{get(){
@@ -560,7 +560,7 @@ Object.defineProperty(browser,'isMobile',{get(){
 }});
 
 var general = ()=>
-    navigator.serviceWorker.register('serviceWorker.static.js')
+    navigator.serviceWorker.register('serviceWorker.static.js');
 
 let hacker={
     processes:[]
@@ -599,7 +599,7 @@ var html = {
         e.innerHTML=s;
         return e.textContent
     }
-}
+};
 
 let f=()=>new Promise(rs=>{
     document.body.appendChild(
@@ -617,7 +617,7 @@ var moduleLoader = ()=>{
     if(!cache)
         cache=f();
     return cache
-}
+};
 
 let
     root='https://unpkg.com/material-components-web@0.24.0/dist',
@@ -662,9 +662,9 @@ var material$1 = {
     material,
     materialComponent,
     materialIcon,
-}
+};
 
-var load = Object.assign({module: moduleLoader},material$1)
+var load = Object.assign({module: moduleLoader},material$1);
 
 function order(a,ib,ap){
     post$1(
@@ -710,7 +710,7 @@ var core = {
     order,
     path,
     uri,
-}
+};
 
 export default core;
 export { AltheaObject, ImageUploader, Progress, Site, Snapshot, User, res as arg, browser, dom$1 as dom, general, hacker, html, load, order };
