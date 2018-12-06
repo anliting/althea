@@ -49,7 +49,7 @@ AltheaServer.prototype.loadPlugins=loadPlugins
 AltheaServer.prototype.loadModule=loadModule
 async function createLoad(){
     await this.database.load
-    if(althea._status=='end')
+    if(this._status=='end')
         return
     this.httpServer=    new HttpServer(this)
     this.wsServer=      new WsServer(this)

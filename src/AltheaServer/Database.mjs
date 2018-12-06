@@ -33,7 +33,6 @@ function Database(dbconfig){
             await this._setVersion(ver)
             break
         }catch(e){
-//console.log(e)
             if(e.code!='ECONNREFUSED')
                 throw e
             await new Promise(rs=>setTimeout(rs,1e3))
