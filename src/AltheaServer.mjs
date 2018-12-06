@@ -10,6 +10,7 @@ import type from                './anliting/type'
 import loadPlugins from         './AltheaServer/prototype.loadPlugins'
 import loadModule from          './AltheaServer/prototype.loadModule'
 function AltheaServer(config,dbconfig){
+    this._status='start'
     this.config=config
     fillMissingConfig(this.config)
     this.clientPluginModules={}
@@ -19,8 +20,11 @@ function AltheaServer(config,dbconfig){
     this.load=createLoad.call(this)
 }
 AltheaServer.prototype.end=async function(){
-    await this.wsServer.end()
-    await this.httpServer.end()
+    this._status='end'
+    if(this.httpServer){
+        await this.httpServer.end()
+        await this.wsServer.end()
+    }
     await this.database.end()
 }
 AltheaServer.prototype.lib={
@@ -45,6 +49,8 @@ AltheaServer.prototype.loadPlugins=loadPlugins
 AltheaServer.prototype.loadModule=loadModule
 async function createLoad(){
     await this.database.load
+    if(althea._status=='end')
+        return
     this.httpServer=    new HttpServer(this)
     this.wsServer=      new WsServer(this)
     this.httpServer.on('error',e=>{

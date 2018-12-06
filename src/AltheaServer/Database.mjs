@@ -17,10 +17,8 @@ import updateEnvironmentvariableById from
     './Database/prototype.updateEnvironmentvariableById'
 import updatePlugin from        './Database/prototype.updatePlugin'
 function Database(dbconfig){
-/*
-Using <code>this._dbconfig=Object.create(dbconfig)</code> instead of <code>this._dbconfig=dbconfig</code> prevent <code>dbconfig</code> to be printed when <code>console.log(this)</code>.
-*/
-    this._dbconfig=Object.create(dbconfig)
+    this._dbconfig=dbconfig
+    this._status='start'
     this.pool=databaseConnector({
         host:       this._dbconfig.host,
         user:       this._dbconfig.user,
@@ -28,13 +26,14 @@ Using <code>this._dbconfig=Object.create(dbconfig)</code> instead of <code>this.
         database:   this._dbconfig.database,
     })
     this.load=(async()=>{
-        for(;;)try{
+        for(;this._status=='start';)try{
             let ver=await this._getVersion()
             while(ver in edges)
                 ver=await edges[ver](this)
             await this._setVersion(ver)
             break
         }catch(e){
+//console.log(e)
             if(e.code!='ECONNREFUSED')
                 throw e
             await new Promise(rs=>setTimeout(rs,1e3))
@@ -44,7 +43,9 @@ Using <code>this._dbconfig=Object.create(dbconfig)</code> instead of <code>this.
 Database.prototype._getVersion=_getVersion
 Database.prototype._setVersion=_setVersion
 Database.prototype.constants=constants
-Database.prototype.end=function(){
+Database.prototype.end=async function(){
+    this._status='end'
+    await this.load
     return this.pool.end()
 }
 Database.prototype.getEnvironmentvariables=getEnvironmentvariables
