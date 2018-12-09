@@ -10,13 +10,13 @@ function Api(){
 Api.prototype.send=function(doc){
     if(!('port' in doc)){
         doc.port=this._nextSessionPort++
-        this._connection.send(doc)
+        this._connection.send([doc.port,doc.function,doc.arguments])
         return new Promise((rs,rj)=>
             this._onMessage[doc.port]=(err,res)=>
                 err?rj(err):rs(res)
         )
     }else{
-        this._connection.send(doc)
+        this._connection.send([doc.port,doc.function,doc.arguments])
     }
 }
 Api.prototype.createSession=function(){

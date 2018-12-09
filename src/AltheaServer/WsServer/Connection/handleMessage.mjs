@@ -29,11 +29,15 @@ async function connectionHandleMessage(message){
         return
     }
     if(!(
-        typeof doc=='object'&&
-        typeof doc.function=='string'&&
-        (!('port' in doc)||typeof doc.port=='number')
+        doc instanceof Array&&
+        typeof doc[0]=='number'
     ))
         return response({error:'docCheckFailed'})
+    doc={
+        port:       doc[0],
+        function:   doc[1],
+        arguments:  doc[2],
+    }
     if(doc.function in this.althea.queryFunctions){
         let res,err
         let session=connectionGetSession.call(this,doc.port)
