@@ -69,12 +69,12 @@ async function selectModule(env){
             break
         case 3:
             env.analyze.request.pathToFile=
-                env.config.pathToUsersFiles+decodedPathname
+                `${env.althea._dataDir}/${env.config.pathToUsersFiles}${decodedPathname}`
             break
         case 4:
             {
                 let path=decodedPathname.split('/')
-                env.analyze.request.pathToFile=`${
+                env.analyze.request.pathToFile=`${env.althea._dataDir}/${
                     env.config.pathToPlugins
                 }/${
                     path[2]

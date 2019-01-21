@@ -30,7 +30,7 @@ function loadPlugins(althea,plugins){
     }
     return Promise.all(plugins.map(async p=>{
         try{
-            let path=`${althea.config.pathToPlugins}/${p.name}`
+            let path=`${althea._dataDir}/${althea.config.pathToPlugins}/${p.name}`
             if(!p.isactivated)
                 return
             if(await fileExist(path)){

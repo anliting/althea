@@ -11,7 +11,7 @@ export default async env=>{
         let form=new formidable.IncomingForm
         form.maxFileSize=4*2**30
         if(env.config.pathToUpload!=undefined)
-            form.uploadDir=env.config.pathToUpload
+            form.uploadDir=`${env.althea._dataDir}/${env.config.pathToUpload}`
         form.parse(env.request,(err,fields,files)=>
             err?rj(err):rs({fields,files})
         )

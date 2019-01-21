@@ -5,10 +5,25 @@ import url from             'url'
 import path from            'path'
 let options={
     printTime:false,
+    dataDirectory:'data',
 }
-process.argv.slice(2).map(v=>
-    v=='t'&&(options.printTime=true)
-)
+let stack=[]
+for(let v of process.argv.slice(2)){
+    switch(v){
+        case'd':
+            stack.push('dataDirectory')
+            break
+        case't':
+            options.printTime=true
+            break
+        default:
+            if(stack[stack.length-1]=='dataDirectory'){
+                options.dataDirectory=v
+                stack.pop()
+            }
+            break
+    }
+}
 !options.printTime?
     main()
 :
@@ -17,8 +32,9 @@ function main(){
     let
         server=new AltheaServer(
             path.dirname((new url.URL(import.meta.url)).pathname),
-            readConfig('config'),
-            readConfig('dbconfig')
+            options.dataDirectory,
+            readConfig(`${options.dataDirectory}/config`),
+            readConfig(`${options.dataDirectory}/dbconfig`)
         ),
         endPromise,
         end=()=>endPromise=endPromise||(async()=>{
