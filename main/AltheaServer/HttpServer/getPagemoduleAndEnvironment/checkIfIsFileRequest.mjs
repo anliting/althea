@@ -2,7 +2,7 @@ import fs from      'fs'
 export default async(env,decodedPathname)=>{
     /*
         1: not file.
-        2: is file, in "althea/src/AltheaServer/HttpServer/files/".
+        2: is file, in `${mainDir}/AltheaServer/HttpServer/files/`.
         3: is file, in env.config.pathToUsersFiles.
         4: is file, in env.config.pathToPlugins.
     */
@@ -13,7 +13,9 @@ export default async(env,decodedPathname)=>{
         }`,4)
     :
         await f(
-            `althea/src/AltheaServer/HttpServer/files${decodedPathname}`,2
+            `${env.althea._mainDir}/AltheaServer/HttpServer/files${
+                decodedPathname
+            }`,2
         )||
         await f(env.config.pathToUsersFiles+decodedPathname,3)
     )||{status:1}

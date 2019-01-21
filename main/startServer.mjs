@@ -1,6 +1,8 @@
 import calcTime from        './anliting/calcTime'
 import readConfig from      './readConfig'
 import AltheaServer from    './AltheaServer'
+import url from             'url'
+import path from            'path'
 let options={
     printTime:false,
 }
@@ -14,6 +16,7 @@ process.argv.slice(2).map(v=>
 function main(){
     let
         server=new AltheaServer(
+            path.dirname((new url.URL(import.meta.url)).pathname),
             readConfig('config'),
             readConfig('dbconfig')
         ),

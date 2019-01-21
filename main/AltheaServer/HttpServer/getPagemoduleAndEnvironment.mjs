@@ -65,7 +65,7 @@ async function selectModule(env){
     switch(res.status){
         case 2:
             env.analyze.request.pathToFile=
-                'althea/src/AltheaServer/HttpServer/files'+decodedPathname
+                `${env.althea._mainDir}/AltheaServer/HttpServer/files${decodedPathname}`
             break
         case 3:
             env.analyze.request.pathToFile=

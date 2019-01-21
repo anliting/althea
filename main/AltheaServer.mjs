@@ -9,10 +9,11 @@ import queryFunctions from      './AltheaServer/queryFunctions'
 import type from                './anliting/type'
 import loadPlugins from         './AltheaServer/prototype.loadPlugins'
 import loadModule from          './AltheaServer/prototype.loadModule'
-function AltheaServer(config,dbconfig){
+function AltheaServer(mainDir,config,dbconfig){
+    this._mainDir=mainDir
     this._status='start'
     this.config=config
-    fillMissingConfig(this.config)
+    fillMissingConfig(this._mainDir,this.config)
     this.clientPluginModules={}
     this.database=          new Database(dbconfig)
     this.envVars=           getEnvironmentVariables(this)
