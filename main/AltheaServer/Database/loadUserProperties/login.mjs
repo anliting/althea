@@ -16,7 +16,10 @@ async function registerLoginSession(env,userId){
     let id=(await this.query0(`
         insert into loginSession set ?
     `,{
-        id_user:userId
+        id_user:userId,
+        password:0,
+        lastBrowser:'',
+        lastOs:'',
     })).insertId
     let password_session=ramdomPassword(env)
     await this.query(`
