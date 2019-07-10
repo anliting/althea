@@ -44,9 +44,10 @@ function loadPlugins(althea,plugins){
                 let
                     wd=process.cwd(),
                     modulePath=`${wd}${wd!='/'?'/':''}${path}/server.mjs`
-                ;(await import(modulePath)).default(
-                    new AltheaForPlugin(p.id)
-                )
+                if(await fileExist(modulePath))
+                    (await import(modulePath)).default(
+                        new AltheaForPlugin(p.id)
+                    )
             }
         }catch(e){
             e.message+=`
