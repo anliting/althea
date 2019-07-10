@@ -1,21 +1,21 @@
-import databaseConnector from   './Database/databaseConnector'
-import edges from               './Database/edges'
-import _getVersion from         './Database/prototype._getVersion'
-import _setVersion from         './Database/prototype._setVersion'
+import databaseConnector from   './Database/databaseConnector.mjs'
+import edges from               './Database/edges.mjs'
+import _getVersion from         './Database/prototype._getVersion.mjs'
+import _setVersion from         './Database/prototype._setVersion.mjs'
 import loadTransactionProperties from
-    './Database/loadTransactionProperties'
-import loadUserProperties from  './Database/loadUserProperties'
-import constants from           './Database/prototype.constants'
+    './Database/loadTransactionProperties.mjs'
+import loadUserProperties from  './Database/loadUserProperties.mjs'
+import constants from           './Database/prototype.constants.mjs'
 import getEnvironmentvariables from
-    './Database/prototype.getEnvironmentvariables'
-import getPlugin from           './Database/prototype.getPlugin'
-import getPlugins from          './Database/prototype.getPlugins'
-import newImage from            './Database/prototype.newImage'
+    './Database/prototype.getEnvironmentvariables.mjs'
+import getPlugin from           './Database/prototype.getPlugin.mjs'
+import getPlugins from          './Database/prototype.getPlugins.mjs'
+import newImage from            './Database/prototype.newImage.mjs'
 import selectActivatedPlugins from
-    './Database/prototype.selectActivatedPlugins'
+    './Database/prototype.selectActivatedPlugins.mjs'
 import updateEnvironmentvariableById from
-    './Database/prototype.updateEnvironmentvariableById'
-import updatePlugin from        './Database/prototype.updatePlugin'
+    './Database/prototype.updateEnvironmentvariableById.mjs'
+import updatePlugin from        './Database/prototype.updatePlugin.mjs'
 function Database(dbconfig){
     this._dbconfig=dbconfig
     this._status='start'

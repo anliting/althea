@@ -1,4 +1,4 @@
-import post from './api/post'
+import post from './api/post.mjs'
 export default env=>{
     if(!env.althea.allowOrigin(env.envVars,env.request.headers.origin))
         return 403

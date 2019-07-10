@@ -1,4 +1,4 @@
-import connectionHandleMessage from'./Connection/handleMessage'
+import connectionHandleMessage from'./Connection/handleMessage.mjs'
 function Connection(
     althea,
     wsConnection,

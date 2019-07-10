@@ -1,10 +1,10 @@
-import commit from          './loadTransactionProperties/commit'
-import connection from      './loadTransactionProperties/connection'
-import query from           './loadTransactionProperties/query'
-import query0 from          './loadTransactionProperties/query0'
-import rollback from        './loadTransactionProperties/rollback'
-import transaction from     './loadTransactionProperties/transaction'
-import transactionDo from   './loadTransactionProperties/transactionDo'
+import commit from          './loadTransactionProperties/commit.mjs'
+import connection from      './loadTransactionProperties/connection.mjs'
+import query from           './loadTransactionProperties/query.mjs'
+import query0 from          './loadTransactionProperties/query0.mjs'
+import rollback from        './loadTransactionProperties/rollback.mjs'
+import transaction from     './loadTransactionProperties/transaction.mjs'
+import transactionDo from   './loadTransactionProperties/transactionDo.mjs'
 export default db=>{
     db.commit=commit
     Object.defineProperty(db,'connection',connection)

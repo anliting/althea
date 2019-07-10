@@ -1,5 +1,5 @@
 import crypto from              'crypto'
-import PermissionError from     '../../PermissionError'
+import PermissionError from     '../../PermissionError.mjs'
 function Session(db,id,id_user,password){
     this._db=db
     this._id=id

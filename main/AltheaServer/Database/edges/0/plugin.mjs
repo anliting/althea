@@ -1,4 +1,4 @@
-import blog from './plugin/blog'
+import blog from './plugin/blog.mjs'
 let list=[
     {
         isactivated:1,

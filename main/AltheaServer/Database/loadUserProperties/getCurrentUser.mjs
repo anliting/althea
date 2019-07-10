@@ -1,4 +1,4 @@
-import PermissionError from '../PermissionError'
+import PermissionError from '../PermissionError.mjs'
 async function getCurrentUser(id,password){
 /*
     errno:

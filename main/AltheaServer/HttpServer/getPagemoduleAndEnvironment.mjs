@@ -1,10 +1,10 @@
 import url from 'url'
-import module_page400 from          './pagemodules/400'
-import module_page403 from          './pagemodules/403'
-import module_page404 from          './pagemodules/404'
-import module_page405get from       './pagemodules/405get'
-import module_files from            './pagemodules/files'
-import checkIfIsFileRequest from './getPagemoduleAndEnvironment/checkIfIsFileRequest'
+import module_page400 from          './pagemodules/400.mjs'
+import module_page403 from          './pagemodules/403.mjs'
+import module_page404 from          './pagemodules/404.mjs'
+import module_page405get from       './pagemodules/405get.mjs'
+import module_files from            './pagemodules/files.mjs'
+import checkIfIsFileRequest from './getPagemoduleAndEnvironment/checkIfIsFileRequest.mjs'
 async function getPagemoduleAndEnvironment(httpServer,req,res,envVars){
     let
         {althea}=httpServer,

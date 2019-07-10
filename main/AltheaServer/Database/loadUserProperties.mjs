@@ -1,14 +1,15 @@
-import deleteUser from              './loadUserProperties/deleteUser'
-import getCurrentUser from          './loadUserProperties/getCurrentUser'
+import deleteUser from              './loadUserProperties/deleteUser.mjs'
+import getCurrentUser from
+    './loadUserProperties/getCurrentUser.mjs'
 import getCurrentUserByRequest from
-    './loadUserProperties/getCurrentUserByRequest'
-import getSession from              './loadUserProperties/getSession'
-import getUser from                 './loadUserProperties/getUser'
-import getUsers from                './loadUserProperties/getUsers'
+    './loadUserProperties/getCurrentUserByRequest.mjs'
+import getSession from              './loadUserProperties/getSession.mjs'
+import getUser from                 './loadUserProperties/getUser.mjs'
+import getUsers from                './loadUserProperties/getUsers.mjs'
 import getUserIdByUsername from
-    './loadUserProperties/getUserIdByUsername'
-import newUser from                 './loadUserProperties/newUser'
-import login from                   './loadUserProperties/login'
+    './loadUserProperties/getUserIdByUsername.mjs'
+import newUser from                 './loadUserProperties/newUser.mjs'
+import login from                   './loadUserProperties/login.mjs'
 export default db=>{
     db.deleteUser=deleteUser
     db.getCurrentUser=getCurrentUser

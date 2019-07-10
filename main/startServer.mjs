@@ -1,11 +1,11 @@
-import calcTime from        './anliting/calcTime'
-import readConfig from      './readConfig'
-import AltheaServer from    './AltheaServer'
+import calcTime from        './anliting/calcTime.mjs'
+import readConfig from      './readConfig.mjs'
+import AltheaServer from    './AltheaServer.mjs'
 import url from             'url'
 import path from            'path'
 let options={
     printTime:false,
-    dataDirectory:'data',
+    dataDirectory:'.',
 }
 let stack=[]
 for(let v of process.argv.slice(2)){

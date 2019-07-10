@@ -1,14 +1,14 @@
 import fs from                  'fs'
-import Database from            './AltheaServer/Database'
-import HttpServer from          './AltheaServer/HttpServer'
-import WsServer from            './AltheaServer/WsServer'
-import fillMissingConfig from   './AltheaServer/fillMissingConfig'
+import Database from            './AltheaServer/Database.mjs'
+import HttpServer from          './AltheaServer/HttpServer.mjs'
+import WsServer from            './AltheaServer/WsServer.mjs'
+import fillMissingConfig from   './AltheaServer/fillMissingConfig.mjs'
 import getEnvironmentVariables from
-    './AltheaServer/getEnvironmentVariables'
-import queryFunctions from      './AltheaServer/queryFunctions'
-import type from                './anliting/type'
-import loadPlugins from         './AltheaServer/prototype.loadPlugins'
-import loadModule from          './AltheaServer/prototype.loadModule'
+    './AltheaServer/getEnvironmentVariables.mjs'
+import queryFunctions from      './AltheaServer/queryFunctions.mjs'
+import type from                './anliting/type.mjs'
+import loadPlugins from         './AltheaServer/prototype.loadPlugins.mjs'
+import loadModule from          './AltheaServer/prototype.loadModule.mjs'
 function AltheaServer(mainDir,datgDir,config,dbconfig){
     this._mainDir=mainDir
     this._dataDir=datgDir

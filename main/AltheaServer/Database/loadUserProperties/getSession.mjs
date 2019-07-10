@@ -1,4 +1,4 @@
-import Session from './getSession/Session'
+import Session from './getSession/Session.mjs'
 async function getSession(id){
     let row=(await this.query0(`
         select

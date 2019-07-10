@@ -1,6 +1,6 @@
 import fs from              'fs'
 import git from             'simple-git'
-import updateDatabase from  './loadPlugins/updateDatabase'
+import updateDatabase from  './loadPlugins/updateDatabase.mjs'
 function loadPlugins(althea,plugins){
     function AltheaForPlugin(pluginId){
         this._pluginId=pluginId
@@ -43,11 +43,10 @@ function loadPlugins(althea,plugins){
             {
                 let
                     wd=process.cwd(),
-                    modulePath=`${wd}${wd!='/'?'/':''}${path}/server`
-                if(await moduleExist(modulePath))
-                    (await import(modulePath)).default(
-                        new AltheaForPlugin(p.id)
-                    )
+                    modulePath=`${wd}${wd!='/'?'/':''}${path}/server.mjs`
+                ;(await import(modulePath)).default(
+                    new AltheaForPlugin(p.id)
+                )
             }
         }catch(e){
             e.message+=`
@@ -57,14 +56,6 @@ loadPlugins():
             throw e
         }
     }))
-}
-async function moduleExist(p){
-    try{
-        await import(p)
-    }catch(e){
-        return
-    }
-    return 1
 }
 async function fileExist(path){
     try{

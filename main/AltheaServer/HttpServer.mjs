@@ -2,8 +2,8 @@ import fs from              'fs'
 import EventEmmiter from    'events'
 import http from            'http'
 import http2 from           'http2'
-import pagemodules from     './HttpServer/pagemodules'
-import _handleRequest from  './HttpServer/prototype._handleRequest'
+import pagemodules from     './HttpServer/pagemodules.mjs'
+import _handleRequest from  './HttpServer/prototype._handleRequest.mjs'
 function HttpServer(althea){
     EventEmmiter.call(this)
     this.althea=althea

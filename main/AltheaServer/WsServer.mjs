@@ -1,5 +1,5 @@
 import ws from          'ws'
-import Connection from  './WsServer/Connection'
+import Connection from  './WsServer/Connection.mjs'
 function WsServer(althea){
     this._althea=althea
     this.rawWsServer=

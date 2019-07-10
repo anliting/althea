@@ -1,4 +1,4 @@
-import getCommitId from './getEnvironmentVariables/getCommitId'
+import getCommitId from './getEnvironmentVariables/getCommitId.mjs'
 async function getEnvironmentVariables(althea){
     let
         res=loadFromDb(althea),
