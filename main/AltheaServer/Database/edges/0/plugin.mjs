@@ -3,137 +3,218 @@ let list=[
     {
         isactivated:1,
         name:'defaultRoot',
-        git:'https://github.com/anliting/althea-defaultRoot.git'
+        git:'https://github.com/anliting/althea-defaultRoot.git',
+        version:0,
+        versionname:'',
+        data:'',
     },
     {
         isactivated:1,
         name:'anlitings-style',
-        git:'https://github.com/anliting/althea-anlitings-style.git'
+        git:'https://github.com/anliting/althea-anlitings-style.git',
+        version:0,
+        versionname:'',
+        data:'',
     },
     {
         isactivated:1,
         name:'user',
-        git:'https://github.com/anliting/althea-user.git'
+        git:'https://github.com/anliting/althea-user.git',
+        version:0,
+        versionname:'',
+        data:'',
     },
     {
         isactivated:0,
         name:'jquery',
-        git:'https://github.com/anliting/althea-jquery.git'
+        git:'https://github.com/anliting/althea-jquery.git',
+        version:0,
+        versionname:'',
+        data:'',
     },
     {
         isactivated:0,
         name:'mathjax',
-        git:'https://github.com/anliting/althea-mathjax.git'
+        git:'https://github.com/anliting/althea-mathjax.git',
+        version:0,
+        versionname:'',
+        data:'',
     },
     {
         isactivated:0,
         name:'materialIcon',
-        git:'https://github.com/anliting/althea-materialIcon.git'
+        git:'https://github.com/anliting/althea-materialIcon.git',
+        version:0,
+        versionname:'',
+        data:'',
     },
     {
         isactivated:0,
         name:'anlitings-style-navigationbar',
-        git:'https://github.com/anliting/althea-anlitings-style-navigationbar.git'
+        git:'https://github.com/anliting/althea-anlitings-style-navigationbar.git',
+        version:0,
+        versionname:'',
+        data:'',
     },
     {
         isactivated:0,
         name:'htmleditor',
-        git:'https://github.com/anliting/althea-htmleditor.git'
+        git:'https://github.com/anliting/althea-htmleditor.git',
+        version:0,
+        versionname:'',
+        data:'',
     },
     {
         isactivated:0,
         name:'t',
-        git:'https://github.com/anliting/althea-t.git'
+        git:'https://github.com/anliting/althea-t.git',
+        version:0,
+        versionname:'',
+        data:'',
     },
     {
         isactivated:0,
         name:'anlitings-facebook',
-        git:'https://github.com/anliting/althea-anlitings-facebook.git'
+        git:'https://github.com/anliting/althea-anlitings-facebook.git',
+        version:0,
+        versionname:'',
+        data:'',
     },
     {
         isactivated:0,
         name:'anlitings-github',
-        git:'https://github.com/anliting/althea-anlitings-github.git'
+        git:'https://github.com/anliting/althea-anlitings-github.git',
+        version:0,
+        versionname:'',
+        data:'',
     },
     {
         isactivated:0,
         name:'watch',
-        git:'https://github.com/anliting/althea-watch.git'
+        git:'https://github.com/anliting/althea-watch.git',
+        version:0,
+        versionname:'',
+        data:'',
     },
     {
         isactivated:0,
         name:'sitemap',
-        git:'https://github.com/anliting/althea-sitemap.git'
+        git:'https://github.com/anliting/althea-sitemap.git',
+        version:0,
+        versionname:'',
+        data:'',
     },
     {
         isactivated:0,
         name:'portal',
-        git:'https://github.com/anliting/althea-portal.git'
+        git:'https://github.com/anliting/althea-portal.git',
+        version:0,
+        versionname:'',
+        data:'',
     },
     {
         isactivated:0,
         name:'loginPage',
-        git:'https://github.com/anliting/althea-loginPage.git'
+        git:'https://github.com/anliting/althea-loginPage.git',
+        version:0,
+        versionname:'',
+        data:'',
     },
     {
         isactivated:0,
         name:'home',
-        git:'https://github.com/anliting/althea-home.git'
+        git:'https://github.com/anliting/althea-home.git',
+        version:0,
+        versionname:'',
+        data:'',
     },
     {
         isactivated:0,
         name:'test',
-        git:'https://github.com/anliting/althea-test.git'
+        git:'https://github.com/anliting/althea-test.git',
+        version:0,
+        versionname:'',
+        data:'',
     },
     {
         isactivated:0,
         name:'chat',
-        git:'https://github.com/anliting/althea-chat.git'
+        git:'https://github.com/anliting/althea-chat.git',
+        version:0,
+        versionname:'',
+        data:'',
     },
     {
         isactivated:0,
         name:'sky',
-        git:'https://github.com/anliting/althea-sky.git'
+        git:'https://github.com/anliting/althea-sky.git',
+        version:0,
+        versionname:'',
+        data:'',
     },
     {
         isactivated:0,
         name:'ipa',
-        git:'https://github.com/anliting/althea-ipa.git'
+        git:'https://github.com/anliting/althea-ipa.git',
+        version:0,
+        versionname:'',
+        data:'',
     },
     {
         isactivated:0,
         name:'ci',
-        git:'https://github.com/anliting/althea-ci.git'
+        git:'https://github.com/anliting/althea-ci.git',
+        version:0,
+        versionname:'',
+        data:'',
     },
     {
         isactivated:0,
         name:'swf',
-        git:'https://github.com/anliting/althea-swf.git'
+        git:'https://github.com/anliting/althea-swf.git',
+        version:0,
+        versionname:'',
+        data:'',
     },
     {
         isactivated:0,
         name:'graph',
-        git:'https://github.com/anliting/althea-graph.git'
+        git:'https://github.com/anliting/althea-graph.git',
+        version:0,
+        versionname:'',
+        data:'',
     },
     {
         isactivated:0,
         name:'robots',
-        git:'https://github.com/anliting/althea-robots.git'
+        git:'https://github.com/anliting/althea-robots.git',
+        version:0,
+        versionname:'',
+        data:'',
     },
     {
         isactivated:0,
         name:'catforest',
-        git:'https://github.com/anliting/althea-catforest.git'
+        git:'https://github.com/anliting/althea-catforest.git',
+        version:0,
+        versionname:'',
+        data:'',
     },
     {
         isactivated:0,
         name:'anlitings-wd',
-        git:'https://github.com/anliting/althea-anlitings-wd.git'
+        git:'https://github.com/anliting/althea-anlitings-wd.git',
+        version:0,
+        versionname:'',
+        data:'',
     },
     {
         isactivated:0,
         name:'game',
-        git:'https://github.com/anliting/althea-game.git'
+        git:'https://github.com/anliting/althea-game.git',
+        version:0,
+        versionname:'',
+        data:'',
     },
 ].concat(blog)
 async function plugin(db){
