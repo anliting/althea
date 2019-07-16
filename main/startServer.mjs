@@ -36,12 +36,14 @@ function main(){
             readConfig(`${options.dataDirectory}/config`),
             readConfig(`${options.dataDirectory}/dbconfig`)
         ),
-        endPromise,
-        end=()=>endPromise=endPromise||(async()=>{
-            await server.end()
-            process.exit()
-        })()
-    process.on('SIGINT',end)
-    process.on('SIGTERM',end)
+        end=()=>{
+            process.off('SIGINT',end).off('SIGTERM',end)
+            ;(async()=>{
+                await server.end()
+                // should not need this
+                //process.exit()
+            })()
+        }
+    process.on('SIGINT',end).on('SIGTERM',end)
     return server.load
 }

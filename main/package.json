@@ -1,17 +1,15 @@
 {
-    "name":"althea",
-    "version":"0.0.0",
     "dependencies":{
-        "diskspace":    "*",
-        "entities":     "*",
-        "etag":         "*",
-        "events":       "*",
-        "formidable":   "*",
-        "gm":           "*",
-        "mime":         "*",
-        "mysql2":       "*",
-        "rfc6265":      "1.0.2",
-        "simple-git":   "*",
-        "ws":           "*"
+        "diskspace":        "*",
+        "entities":         "*",
+        "etag":             "*",
+        "events":           "*",
+        "formidable":       "*",
+        "gm":               "*",
+        "mime":             "*",
+        "mysql2":           "*",
+        "simple-git":       "*",
+        "ws":               "*",
+        "@anliting/cookie": "*"
     }
 }

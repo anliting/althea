@@ -12,7 +12,6 @@ import loadModule from          './AltheaServer/prototype.loadModule.mjs'
 function AltheaServer(mainDir,datgDir,config,dbconfig){
     this._mainDir=mainDir
     this._dataDir=datgDir
-    this._status='start'
     this.config=config
     fillMissingConfig(this._mainDir,this.config)
     this.clientPluginModules={}
@@ -22,7 +21,7 @@ function AltheaServer(mainDir,datgDir,config,dbconfig){
     this.load=createLoad.call(this)
 }
 AltheaServer.prototype.end=async function(){
-    this._status='end'
+    await this.load
     if(this.httpServer){
         await this.httpServer.end()
         await this.wsServer.end()
@@ -51,8 +50,6 @@ AltheaServer.prototype.loadPlugins=loadPlugins
 AltheaServer.prototype.loadModule=loadModule
 async function createLoad(){
     await this.database.load
-    if(this._status=='end')
-        return
     this.httpServer=    new HttpServer(this)
     this.wsServer=      new WsServer(this)
     this.httpServer.on('error',e=>{
