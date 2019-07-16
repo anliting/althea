@@ -1,6 +1,6 @@
 async function calcTime(f){
-    let startTime=new Date
+    let s=process.hrtime.bigint()
     await f()
-    return (new Date)-startTime
+    return Number(process.hrtime.bigint()-s)/1e9
 }
 export default calcTime

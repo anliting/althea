@@ -1,4 +1,6 @@
 import fs from                  'fs'
+import url from                 'url'
+import path from                'path'
 import Database from            './AltheaServer/Database.mjs'
 import HttpServer from          './AltheaServer/HttpServer.mjs'
 import WsServer from            './AltheaServer/WsServer.mjs'
@@ -9,9 +11,9 @@ import queryFunctions from      './AltheaServer/queryFunctions.mjs'
 import type from                './anliting/type.mjs'
 import loadPlugins from         './AltheaServer/prototype.loadPlugins.mjs'
 import loadModule from          './AltheaServer/prototype.loadModule.mjs'
-function AltheaServer(mainDir,datgDir,config,dbconfig){
-    this._mainDir=mainDir
-    this._dataDir=datgDir
+function AltheaServer(dataDir,config,dbconfig){
+    this._mainDir=path.dirname((new url.URL(import.meta.url)).pathname)
+    this._dataDir=dataDir
     this.config=config
     fillMissingConfig(this._mainDir,this.config)
     this.clientPluginModules={}
