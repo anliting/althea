@@ -1,4 +1,4 @@
-import type from    '../../anliting/type'
+import type from    '../../anliting/type.mjs'
 export default async(opt,env)=>{
     opt instanceof Object&&
     typeof opt.id=='number'&&

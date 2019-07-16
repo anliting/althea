@@ -1,4 +1,4 @@
-import saveFile from './saveFile'
+import saveFile from './saveFile.mjs'
 import gm from 'gm'
 async function uploadImage(env,fields,files){
     let id=fields.id

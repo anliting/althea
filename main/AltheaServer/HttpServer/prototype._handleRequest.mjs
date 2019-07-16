@@ -1,5 +1,5 @@
-import getPagemoduleAndEnvironment from'./getPagemoduleAndEnvironment'
-import runPagemodule from'./runPagemodule'
+import getPagemoduleAndEnvironment from'./getPagemoduleAndEnvironment.mjs'
+import runPagemodule from'./runPagemodule.mjs'
 async function handleRequest(envVars,req,res){
     let result=await getPagemoduleAndEnvironment(
         this,req,res,envVars

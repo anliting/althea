@@ -1,4 +1,4 @@
-import module_page500 from './pagemodules/500'
+import module_page500 from './pagemodules/500.mjs'
 import etag from 'etag'
 async function f(env,pageModule){
     try{

@@ -1,4 +1,4 @@
-import pluginManager from './prototype.loadPlugins/pluginManager'
+import pluginManager from './prototype.loadPlugins/pluginManager.mjs'
 export default async function(){
     let plugins=(await Promise.all([
         this.ensureDirectory(`${this._dataDir}/${this.config.pathToPlugins}`),

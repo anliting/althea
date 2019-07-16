@@ -1,4 +1,4 @@
-import{parseAsCookieString}from'rfc6265'
+import{parseAsCookieString}from'@anliting/cookie'
 function getCookieOfRequest(request){
     return request.headers.cookie?
         parseAsCookieString(request.headers.cookie)

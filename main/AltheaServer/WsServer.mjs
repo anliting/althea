@@ -1,11 +1,11 @@
 import ws from          'ws'
-import Connection from  './WsServer/Connection'
+import Connection from  './WsServer/Connection.mjs'
 function WsServer(althea){
     this._althea=althea
     this.rawWsServer=
         new ws.Server({server:this._althea.httpServer.rawHttpServer})
     this.alive=new WeakMap
-    setInterval(()=>{
+    this._interval=setInterval(()=>{
         this.rawWsServer.clients.forEach(cn=>{
             if(!this.alive.get(cn))
                 return cn.terminate()
@@ -44,8 +44,9 @@ WsServer.prototype._handleConnection=function(cn,req,envVars){
     )
 }
 WsServer.prototype.end=function(){
-    return new Promise((rs,rj)=>
+    return new Promise((rs,rj)=>{
+        clearInterval(this._interval)
         this.rawWsServer.close(err=>err?rj(err):rs())
-    )
+    })
 }
 export default WsServer

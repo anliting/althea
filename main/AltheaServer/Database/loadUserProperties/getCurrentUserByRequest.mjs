@@ -1,5 +1,5 @@
-import getCookieOfRequest from  '../../../anliting/getCookieOfRequest'
-import type from                '../../../anliting/type'
+import getCookieOfRequest from  '../../../anliting/getCookieOfRequest.mjs'
+import type from                '../../../anliting/type.mjs'
 function getCurrentUserByRequest(req){
     let loginSession
     if((()=>{

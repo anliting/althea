@@ -2,10 +2,11 @@ import fs from              'fs'
 import EventEmmiter from    'events'
 import http from            'http'
 import http2 from           'http2'
-import pagemodules from     './HttpServer/pagemodules'
-import _handleRequest from  './HttpServer/prototype._handleRequest'
+import pagemodules from     './HttpServer/pagemodules.mjs'
+import _handleRequest from  './HttpServer/prototype._handleRequest.mjs'
 function HttpServer(althea){
     EventEmmiter.call(this)
+    this._connection=new Set
     this.althea=althea
     this.pagemodules=Object.create(pagemodules)
     this.plugins=[]
@@ -23,6 +24,10 @@ function HttpServer(althea){
         althea.ensureDirectory(`${althea._dataDir}/${althea.config.pathToUsersFiles}`),
         (async()=>{
             let envVars=await althea.envVars
+            this.rawHttpServer.on('connection',con=>{
+                this._connection.add(con)
+                con.on('close',()=>this._connection.delete(con))
+            })
             this.rawHttpServer.on('request',(req,res)=>{
                 this._handleRequest(envVars,req,res).catch(err=>
                     this.emit('error',err)
@@ -41,9 +46,10 @@ HttpServer.prototype.addPagemodule=function(k,v){
         this.pagemodules[k]=v
 }
 HttpServer.prototype.end=function(){
-    return new Promise((rs,rj)=>
+    return new Promise((rs,rj)=>{
+            this._connection.forEach(con=>con.destroy())
         this.rawHttpServer.close(err=>err?rj(err):rs())
-    )
+    })
 }
 Object.defineProperty(HttpServer.prototype,'listen',{get(){
     this.rawHttpServer.listen(

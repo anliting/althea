@@ -1,6 +1,6 @@
 import formidable from      'formidable'
-import uploadFile from      './post/uploadFile'
-import uploadImage from     './post/uploadImage'
+import uploadFile from      './post/uploadFile.mjs'
+import uploadImage from     './post/uploadImage.mjs'
 let
     functions={
         uploadFile,

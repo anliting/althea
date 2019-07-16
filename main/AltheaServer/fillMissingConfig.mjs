@@ -1,4 +1,4 @@
-import readConfig from  '../readConfig'
+import readConfig from  '../readConfig.mjs'
 function fillMissingConfig(mainDir,config){
     let defaultConfig=readConfig(`${mainDir}/AltheaServer/defaultConfig`)
     for(let i in defaultConfig)

@@ -1,47 +1,33 @@
-import calcTime from        './anliting/calcTime'
-import readConfig from      './readConfig'
-import AltheaServer from    './AltheaServer'
-import url from             'url'
-import path from            'path'
+import calcTime from        './anliting/calcTime.mjs'
+import readConfig from      './readConfig.mjs'
+import AltheaServer from    './AltheaServer.mjs'
 let options={
     printTime:false,
-    dataDirectory:'data',
 }
-let stack=[]
-for(let v of process.argv.slice(2)){
-    switch(v){
-        case'd':
-            stack.push('dataDirectory')
-            break
-        case't':
-            options.printTime=true
-            break
-        default:
-            if(stack[stack.length-1]=='dataDirectory'){
-                options.dataDirectory=v
-                stack.pop()
+for(let v of process.argv.slice(2))switch(v){
+    case't':
+        options.printTime=true
+        break
+}
+;(async()=>{
+    let t=await calcTime(()=>{
+        let
+            server=new AltheaServer(
+                readConfig('config'),
+                readConfig('dbconfig')
+            ),
+            end=()=>{
+                process.off('SIGINT',end).off('SIGTERM',end)
+                ;(async()=>{
+                    await server.end()
+                    // should not need this
+                    process.exit()
+                })()
             }
-            break
-    }
-}
-!options.printTime?
-    main()
-:
-    calcTime(main).then(console.log)
-function main(){
-    let
-        server=new AltheaServer(
-            path.dirname((new url.URL(import.meta.url)).pathname),
-            options.dataDirectory,
-            readConfig(`${options.dataDirectory}/config`),
-            readConfig(`${options.dataDirectory}/dbconfig`)
-        ),
-        endPromise,
-        end=()=>endPromise=endPromise||(async()=>{
-            await server.end()
-            process.exit()
-        })()
-    process.on('SIGINT',end)
-    process.on('SIGTERM',end)
-    return server.load
-}
+        process.on('SIGINT',end).on('SIGTERM',end)
+        return server.load
+    })
+    if(options.printTime)
+        console.log(`${t}s`)
+})()
+

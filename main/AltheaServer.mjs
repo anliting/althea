@@ -1,18 +1,21 @@
 import fs from                  'fs'
-import Database from            './AltheaServer/Database'
-import HttpServer from          './AltheaServer/HttpServer'
-import WsServer from            './AltheaServer/WsServer'
-import fillMissingConfig from   './AltheaServer/fillMissingConfig'
+import url from                 'url'
+import path from                'path'
+import Database from            './AltheaServer/Database.mjs'
+import HttpServer from          './AltheaServer/HttpServer.mjs'
+import WsServer from            './AltheaServer/WsServer.mjs'
+import fillMissingConfig from   './AltheaServer/fillMissingConfig.mjs'
 import getEnvironmentVariables from
-    './AltheaServer/getEnvironmentVariables'
-import queryFunctions from      './AltheaServer/queryFunctions'
-import type from                './anliting/type'
-import loadPlugins from         './AltheaServer/prototype.loadPlugins'
-import loadModule from          './AltheaServer/prototype.loadModule'
-function AltheaServer(mainDir,datgDir,config,dbconfig){
-    this._mainDir=mainDir
-    this._dataDir=datgDir
-    this._status='start'
+    './AltheaServer/getEnvironmentVariables.mjs'
+import queryFunctions from      './AltheaServer/queryFunctions.mjs'
+import type from                './anliting/type.mjs'
+import loadPlugins from         './AltheaServer/prototype.loadPlugins.mjs'
+import loadModule from          './AltheaServer/prototype.loadModule.mjs'
+function AltheaServer(config,dbconfig){
+    this._mainDir=path.dirname((new url.URL(import.meta.url)).pathname)
+    this._dataDir='.'
+    if(typeof config.trustOrigin=='string')
+        config.trustOrigin=[config.trustOrigin]
     this.config=config
     fillMissingConfig(this._mainDir,this.config)
     this.clientPluginModules={}
@@ -22,7 +25,7 @@ function AltheaServer(mainDir,datgDir,config,dbconfig){
     this.load=createLoad.call(this)
 }
 AltheaServer.prototype.end=async function(){
-    this._status='end'
+    await this.load
     if(this.httpServer){
         await this.httpServer.end()
         await this.wsServer.end()
@@ -45,14 +48,14 @@ AltheaServer.prototype.addQueryFunction=function(k,v){
     this.queryFunctions[k]=v
 }
 AltheaServer.prototype.allowOrigin=function(envVars,origin){
-    return origin==undefined||origin==envVars.trustedOrigin
+    return origin==undefined||
+        this.config.trustOrigin.includes(origin)||
+        origin==envVars.trustedOrigin
 }
 AltheaServer.prototype.loadPlugins=loadPlugins
 AltheaServer.prototype.loadModule=loadModule
 async function createLoad(){
     await this.database.load
-    if(this._status=='end')
-        return
     this.httpServer=    new HttpServer(this)
     this.wsServer=      new WsServer(this)
     this.httpServer.on('error',e=>{

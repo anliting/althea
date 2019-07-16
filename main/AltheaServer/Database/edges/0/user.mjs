@@ -13,19 +13,22 @@ async function user(db){
         root(db),
         db.query(`
             insert into user set
-                id=?,
-                username='anonymous',
-                nickname='Anonymous'
-        `,db.constants.user.id.anonymous)
+                ?
+        `,{
+            id:db.constants.user.id.anonymous,
+            username:'anonymous',
+            password:Buffer.alloc(32),
+            nickname:'Anonymous',
+        })
     ])
 }
 async function root(db){
-    await db.query(`
-        insert into user set
-            id=?,
-            username='root',
-            nickname='Root'
-    `,db.constants.user.id.root),
+    await db.query(`insert into user set ?`,{
+        id:db.constants.user.id.root,
+        username:'root',
+        password:Buffer.alloc(32),
+        nickname:'Root',
+    })
     await(await db.getUser(db.constants.user.id.root)).set({
         password:''
     })

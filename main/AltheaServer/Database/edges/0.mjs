@@ -1,7 +1,7 @@
-import environmentvariable from     './0/environmentvariable'
-import plugin from                  './0/plugin'
-import user from                    './0/user'
-import usermeta from                './0/usermeta'
+import environmentvariable from     './0/environmentvariable.mjs'
+import plugin from                  './0/plugin.mjs'
+import user from                    './0/user.mjs'
+import usermeta from                './0/usermeta.mjs'
 export default async db=>{
     await Promise.all([
         environmentvariable(db),

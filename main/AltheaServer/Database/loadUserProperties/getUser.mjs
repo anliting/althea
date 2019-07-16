@@ -1,4 +1,4 @@
-import User from './User'
+import User from './User.mjs'
 async function getUserData(db,id){
     return(await db.query0(`
         select
