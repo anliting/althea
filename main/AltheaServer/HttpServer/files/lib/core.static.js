@@ -1,5 +1,92 @@
-import { EventEmmiter, dom, integerBinarySearch, doe, path, uri } from 'https://gitcdn.link/cdn/anliting/simple.js/09b9cd311f438c07fd1ac0ead044aed97158faf3/src/simple.static.js';
-export { EventEmmiter, doe, path, uri } from 'https://gitcdn.link/cdn/anliting/simple.js/09b9cd311f438c07fd1ac0ead044aed97158faf3/src/simple.static.js';
+import { dom as dom$1, integerBinarySearch, path, uri } from 'https://gitcdn.link/cdn/anliting/simple.js/09b9cd311f438c07fd1ac0ead044aed97158faf3/src/simple.static.js';
+export { path, uri } from 'https://gitcdn.link/cdn/anliting/simple.js/09b9cd311f438c07fd1ac0ead044aed97158faf3/src/simple.static.js';
+
+function doe(n){
+    let
+        state=0,
+        p={
+            function:f=>f(n),
+            number,
+            object,
+            string,
+        };
+    transform([...arguments].slice(1));
+    return n
+    function number(n){
+        state=n;
+    }
+    function object(o){
+        if(o instanceof Array)
+            array();
+        else if(o instanceof Node)
+            n[state?'removeChild':'appendChild'](o);
+        else if(('length' in o)||o[Symbol.iterator]){
+            o=Array.from(o);
+            array();
+        }else if(state)
+            Object.entries(o).map(([a,b])=>n.setAttribute(a,b));
+        else
+            Object.assign(n,o);
+        function array(){
+            o.map(transform);
+        }
+    }
+    function string(s){
+        n.appendChild(document.createTextNode(s));
+    }
+    function transform(t){
+        for(let q;q=p[typeof t];t=q(t));
+    }
+}
+let methods={
+    html(){
+        return doe(document.documentElement,...arguments)
+    },
+    head(){
+        return doe(document.head,...arguments)
+    },
+    body(){
+        return doe(document.body,...arguments)
+    },
+};
+var doe$1 = new Proxy(doe,{
+    get:(t,p)=>methods[p]||function(){
+        return doe(document.createElement(p),...arguments)
+    }
+});
+
+function EventEmmiter(){
+    this._listeners={};
+}
+EventEmmiter.prototype._keyExist=function(key){
+    return key in this._listeners
+};
+EventEmmiter.prototype._ensureKeyExist=function(key){
+    if(!(key in this._listeners))
+        this._listeners[key]=new Map;
+};
+EventEmmiter.prototype.emit=function(key,event){
+    if(!this._keyExist(key))
+        return
+    for(let[listener,doc]of[...this._listeners[key].entries()]){
+        if(doc.once)
+            this.off(key,listener);
+        listener(event);
+    }
+};
+EventEmmiter.prototype.off=function(key,listener){
+    if(!this._keyExist(key))
+        return
+    this._listeners[key].delete(listener);
+};
+EventEmmiter.prototype.on=function(key,listener){
+    this._ensureKeyExist(key);
+    this._listeners[key].set(listener,{once:false});
+};
+EventEmmiter.prototype.once=function(key,listener){
+    this._ensureKeyExist(key);
+    this._listeners[key].set(listener,{once:true});
+};
 
 function AltheaObject(io,id){
     this._io=io;
@@ -68,7 +155,7 @@ var style = `
         height:2px;
         background:gray;
     }
-`
+`;
 
 function createForeground(){
     return this('div',div=>{
@@ -128,7 +215,7 @@ async function getFile(e){
     return e.input.files
 }
 
-var dom$1 = Object.assign(dom,{createFileButton,createBF})
+var dom = Object.assign(dom$1,{createFileButton,createBF});
 
 function View(progress){
     this._progress=progress;
@@ -138,7 +225,7 @@ Object.defineProperty(View.prototype,'free',{get(){
     cancelAnimationFrame(this._animationFrame);
 }});
 function createNode(view){
-    let n=dom$1.div({className:'progressBar'});
+    let n=dom.div({className:'progressBar'});
     let f=()=>{
         view._animationFrame=requestAnimationFrame(f);
         n.style.left=(1-view._progress._animationCursor)/2*100+'%';
@@ -223,7 +310,7 @@ var docTrans = doc=>{
     for(let i in doc)if(i!='function')
         res.arguments[i]=doc[i];
     return res
-}
+};
 
 function toFormData(doc){
     let formdata=new FormData;
@@ -240,7 +327,7 @@ var post = doc=>{
             req.readyState==4&&req.status==200&&
                 rs(JSON.parse(req.responseText))
     )
-}
+};
 
 function send(doc){
     doc=docTrans(doc);
@@ -258,7 +345,7 @@ function User(){
 Object.setPrototypeOf(User.prototype,AltheaObject.prototype);
 User.prototype._loader='getUser';
 User.prototype._createA=function(by){
-    let a=dom$1.a({className:'user'});
+    let a=dom.a({className:'user'});
     let final=(async()=>{
         await this.load([
             'username',
@@ -275,7 +362,7 @@ User.prototype._createA=function(by){
         ));
         return a
     })();
-    return{
+    return {
         a,
         final
     }
@@ -297,12 +384,12 @@ User.prototype.createUi=async function(cu){
         'username',
         'nickname',
     ]);
-    return dom$1.div(
-        dom$1.p(`ID: ${this.id}`),
-        dom$1.p(`Username: ${this.username}`),
-        this.nickname&&dom$1.p(`Nickname: ${this.nickname}`),
-        this.equal(cu)&&dom$1.p(
-            dom$1.a(
+    return dom.div(
+        dom.p(`ID: ${this.id}`),
+        dom.p(`Username: ${this.username}`),
+        this.nickname&&dom.p(`Nickname: ${this.nickname}`),
+        this.equal(cu)&&dom.p(
+            dom.a(
                 {href:'edituser'},
                 'Update the information or change password.'
             ),
@@ -334,15 +421,15 @@ var login$1 = async(site,loginForm)=>{
     );
     if(!res)
         loginForm.failedDiv.style.display='';
-}
+};
 
 function innerFormDiv(site,loginForm){
-    let div=dom$1.div(
+    let div=dom.div(
         usernameDiv(loginForm),
         passwordDiv(loginForm),
         loginForm.failedDiv=failedDiv(),
         loginButtonDiv(site,loginForm),
-        registerADiv(site,loginForm)
+        registerADiv()
     );
     div.style.margin='32px 48px';
     div.onkeydown=e=>{
@@ -355,7 +442,7 @@ function innerFormDiv(site,loginForm){
     return div
 }
 function usernameDiv(loginForm){
-    return dom$1.div(loginForm.usernameInput=dom$1.input(n=>{
+    return dom.div(loginForm.usernameInput=dom.input(n=>{
         // let chrome 53 know it's login form
         n.name='username';
         n.placeholder='Username';
@@ -363,12 +450,12 @@ function usernameDiv(loginForm){
     }))
 }
 function passwordDiv(loginForm){
-    return dom$1.div(
+    return dom.div(
         n=>{n.style.marginTop='24px';},
         loginForm.passwordInput=passwordInput()
     )
     function passwordInput(){
-        return dom$1.input(
+        return dom.input(
             n=>{n.style.padding='4px';},
             {
                 type:'password',
@@ -380,8 +467,8 @@ function passwordDiv(loginForm){
     }
 }
 function failedDiv(){
-    return dom$1.div(
-        n=>{dom$1(n.style,{display:'none',marginTop:'24px'});},
+    return dom.div(
+        n=>{dom(n.style,{display:'none',marginTop:'24px'});},
         `
             Login failed, due to invalid username and/or
             mismatched password.
@@ -389,12 +476,12 @@ function failedDiv(){
     )
 }
 function loginButtonDiv(site,loginForm){
-    return dom$1.div(
+    return dom.div(
         n=>{n.style.marginTop='24px';},
         loginForm.loginButton=loginButton()
     )
     function loginButton(){
-        let button=dom$1.button('Log In');
+        let button=dom.button('Log In');
         button.style.padding='4px';
         button.onclick=e=>{
             e.stopPropagation();
@@ -404,38 +491,38 @@ function loginButtonDiv(site,loginForm){
     }
 }
 function registerADiv(){
-    return dom$1.div(
-        dom$1.a('Register a new user.',{href:'user'}),
+    return dom.div(
+        dom.a('Register a new user.',{href:'user'}),
         n=>{n.style.marginTop='24px';}
     )
 }
 
 var loginForm = {get(){
-    let bF=dom$1.createBF();
+    let bF=dom.createBF();
     let loginForm=new EventEmmiter;
     bF.appendChild(innerFormDiv(this,loginForm));
     loginForm.node=bF.node;
     bF.on('backClick',e=>loginForm.emit('backClick',e));
     return loginForm
-}}
+}};
 
 var currentUser = {async get(){
     return this.getUser(await this.send('getCurrentUser'))
-}}
+}};
 
 function loadUserProperties(o){
     Object.defineProperty(o,'showLoginForm',{get(){
         let
-            loginForm$$1=this.loginForm,
-            node=loginForm$$1.node;
+            loginForm=this.loginForm,
+            node=loginForm.node;
         document.body.appendChild(node);
-        loginForm$$1.login=async(u,p,k)=>{
+        loginForm.login=async(u,p,k)=>{
             if(await this.login(u,p,k))
                 remove();
         };
-        loginForm$$1.usernameInput.focus();
-        loginForm$$1.on('backClick',remove);
-        return loginForm$$1
+        loginForm.usernameInput.focus();
+        loginForm.on('backClick',remove);
+        return loginForm
         function remove(){
             document.body.removeChild(node);
         }
@@ -560,7 +647,7 @@ Object.defineProperty(browser,'isMobile',{get(){
 }});
 
 var general = ()=>
-    navigator.serviceWorker.register('serviceWorker.static.js')
+    navigator.serviceWorker.register('serviceWorker.static.js');
 
 let hacker={
     processes:[]
@@ -599,7 +686,7 @@ var html = {
         e.innerHTML=s;
         return e.textContent
     }
-}
+};
 
 let f=()=>new Promise(rs=>{
     document.body.appendChild(
@@ -613,11 +700,11 @@ let f=()=>new Promise(rs=>{
     );
 });
 let cache;
-var moduleLoader = ()=>{
+var module = ()=>{
     if(!cache)
         cache=f();
     return cache
-}
+};
 
 let
     root='https://unpkg.com/material-components-web@0.24.0/dist',
@@ -634,14 +721,14 @@ function material(){
 function materialComponent(){
     if(!materialComponentLoaded)
         materialComponentLoaded=(async()=>{
-            let module=await moduleLoader();
+            let module$1=await module();
             await Promise.all([
                 (async()=>{
-                    dom$1.head(dom$1.style(
-                        await module.getByPath(componentCss)
+                    dom.head(dom.style(
+                        await module$1.getByPath(componentCss)
                     ));
                 })(),
-                module.scriptByPath(
+                module$1.scriptByPath(
                     `${root}/material-components-web.min.js`
                 ),
             ]);
@@ -651,9 +738,9 @@ function materialComponent(){
 function materialIcon(){
     if(!materialIconLoaded)
         materialIconLoaded=(async()=>{
-            let module=await moduleLoader();
-            dom$1.head(dom$1.style(
-                await module.getByPath(iconCss)
+            let module$1=await module();
+            dom.head(dom.style(
+                await module$1.getByPath(iconCss)
             ));
         })();
     return materialIconLoaded
@@ -662,9 +749,9 @@ var material$1 = {
     material,
     materialComponent,
     materialIcon,
-}
+};
 
-var load = Object.assign({module: moduleLoader},material$1)
+var load = Object.assign({module},material$1);
 
 function order(a,ib,ap){
     post$1(
@@ -701,8 +788,8 @@ var core = {
     User,
     arg: res,
     browser,
-    doe,
-    dom: dom$1,
+    doe: doe$1,
+    dom,
     general,
     hacker,
     html,
@@ -710,7 +797,7 @@ var core = {
     order,
     path,
     uri,
-}
+};
 
 export default core;
-export { AltheaObject, ImageUploader, Progress, Site, Snapshot, User, res as arg, browser, dom$1 as dom, general, hacker, html, load, order };
+export { AltheaObject, EventEmmiter, ImageUploader, Progress, Site, Snapshot, User, res as arg, browser, doe$1 as doe, dom, general, hacker, html, load, order };

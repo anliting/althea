@@ -1,6 +1,6 @@
+import doe from'../_lib/doe/main/doe.mjs'
+import EventEmmiter from'../_lib/EventEmmiter/main/EventEmmiter.mjs'
 import{
-    EventEmmiter,
-    doe,
     path,
     uri,
 }from'https://gitcdn.link/cdn/anliting/simple.js/09b9cd311f438c07fd1ac0ead044aed97158faf3/src/simple.static.js'

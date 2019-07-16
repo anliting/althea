@@ -1,0 +1,6 @@
+[submodule "main/AltheaServer/HttpServer/files/_lib/EventEmmiter"]
+	path = main/AltheaServer/HttpServer/files/_lib/EventEmmiter
+	url = https://github.com/anliting/EventEmmiter.git
+[submodule "main/AltheaServer/HttpServer/files/_lib/doe"]
+	path = main/AltheaServer/HttpServer/files/_lib/doe
+	url = https://github.com/anliting/doe.git

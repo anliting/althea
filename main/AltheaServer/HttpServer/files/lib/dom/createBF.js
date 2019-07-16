@@ -1,4 +1,4 @@
-import{EventEmmiter}from'https://gitcdn.link/cdn/anliting/simple.js/09b9cd311f438c07fd1ac0ead044aed97158faf3/src/simple.static.js'
+import EventEmmiter from'../../_lib/EventEmmiter/main/EventEmmiter.mjs'
 function createForeground(){
     return this('div',div=>{
         this(div.style,{

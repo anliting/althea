@@ -1,6 +1,6 @@
 import innerFormDiv from './prototype.loginForm/innerFormDiv.js'
 import dom from '../../dom.js'
-import{EventEmmiter}from'https://gitcdn.link/cdn/anliting/simple.js/09b9cd311f438c07fd1ac0ead044aed97158faf3/src/simple.static.js'
+import EventEmmiter from'../../../_lib/EventEmmiter/main/EventEmmiter.mjs'
 export default{get(){
     let bF=dom.createBF()
     let loginForm=new EventEmmiter
