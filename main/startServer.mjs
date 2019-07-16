@@ -41,7 +41,7 @@ function main(){
             ;(async()=>{
                 await server.end()
                 // should not need this
-                //process.exit()
+                process.exit()
             })()
         }
     process.on('SIGINT',end).on('SIGTERM',end)
