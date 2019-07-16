@@ -13,7 +13,6 @@ for(let v of process.argv.slice(2))switch(v){
     let t=await calcTime(()=>{
         let
             server=new AltheaServer(
-                '.',
                 readConfig('config'),
                 readConfig('dbconfig')
             ),

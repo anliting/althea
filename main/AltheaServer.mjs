@@ -11,9 +11,11 @@ import queryFunctions from      './AltheaServer/queryFunctions.mjs'
 import type from                './anliting/type.mjs'
 import loadPlugins from         './AltheaServer/prototype.loadPlugins.mjs'
 import loadModule from          './AltheaServer/prototype.loadModule.mjs'
-function AltheaServer(dataDir,config,dbconfig){
+function AltheaServer(config,dbconfig){
     this._mainDir=path.dirname((new url.URL(import.meta.url)).pathname)
-    this._dataDir=dataDir
+    this._dataDir='.'
+    if(typeof config.trustOrigin=='string')
+        config.trustOrigin=[config.trustOrigin]
     this.config=config
     fillMissingConfig(this._mainDir,this.config)
     this.clientPluginModules={}
@@ -46,7 +48,9 @@ AltheaServer.prototype.addQueryFunction=function(k,v){
     this.queryFunctions[k]=v
 }
 AltheaServer.prototype.allowOrigin=function(envVars,origin){
-    return origin==undefined||origin==envVars.trustedOrigin
+    return origin==undefined||
+        this.config.trustOrigin.includes(origin)||
+        origin==envVars.trustedOrigin
 }
 AltheaServer.prototype.loadPlugins=loadPlugins
 AltheaServer.prototype.loadModule=loadModule
