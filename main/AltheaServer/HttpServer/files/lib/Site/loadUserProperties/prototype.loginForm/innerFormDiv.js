@@ -1,7 +1,7 @@
-import dom from '../../../dom.js'
+import doe from '../../../../_lib/doe/main/doe.mjs'
 import login from './login.js'
 function innerFormDiv(site,loginForm){
-    let div=dom.div(
+    let div=doe.div(
         usernameDiv(loginForm),
         passwordDiv(loginForm),
         loginForm.failedDiv=failedDiv(),
@@ -19,7 +19,7 @@ function innerFormDiv(site,loginForm){
     return div
 }
 function usernameDiv(loginForm){
-    return dom.div(loginForm.usernameInput=dom.input(n=>{
+    return doe.div(loginForm.usernameInput=doe.input(n=>{
         // let chrome 53 know it's login form
         n.name='username'
         n.placeholder='Username'
@@ -27,12 +27,12 @@ function usernameDiv(loginForm){
     }))
 }
 function passwordDiv(loginForm){
-    return dom.div(
+    return doe.div(
         n=>{n.style.marginTop='24px'},
         loginForm.passwordInput=passwordInput()
     )
     function passwordInput(){
-        return dom.input(
+        return doe.input(
             n=>{n.style.padding='4px'},
             {
                 type:'password',
@@ -44,8 +44,8 @@ function passwordDiv(loginForm){
     }
 }
 function failedDiv(){
-    return dom.div(
-        n=>{dom(n.style,{display:'none',marginTop:'24px'})},
+    return doe.div(
+        n=>{doe(n.style,{display:'none',marginTop:'24px'})},
         `
             Login failed, due to invalid username and/or
             mismatched password.
@@ -53,12 +53,12 @@ function failedDiv(){
     )
 }
 function loginButtonDiv(site,loginForm){
-    return dom.div(
+    return doe.div(
         n=>{n.style.marginTop='24px'},
         loginForm.loginButton=loginButton()
     )
     function loginButton(){
-        let button=dom.button('Log In')
+        let button=doe.button('Log In')
         button.style.padding='4px'
         button.onclick=e=>{
             e.stopPropagation()
@@ -68,8 +68,8 @@ function loginButtonDiv(site,loginForm){
     }
 }
 function registerADiv(){
-    return dom.div(
-        dom.a('Register a new user.',{href:'user'}),
+    return doe.div(
+        doe.a('Register a new user.',{href:'user'}),
         n=>{n.style.marginTop='24px'}
     )
 }

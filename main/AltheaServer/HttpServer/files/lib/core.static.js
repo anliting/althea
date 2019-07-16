@@ -1,4 +1,4 @@
-import { dom as dom$1, integerBinarySearch, path, uri } from 'https://gitcdn.link/cdn/anliting/simple.js/09b9cd311f438c07fd1ac0ead044aed97158faf3/src/simple.static.js';
+import { integerBinarySearch, path, uri } from 'https://gitcdn.link/cdn/anliting/simple.js/09b9cd311f438c07fd1ac0ead044aed97158faf3/src/simple.static.js';
 export { path, uri } from 'https://gitcdn.link/cdn/anliting/simple.js/09b9cd311f438c07fd1ac0ead044aed97158faf3/src/simple.static.js';
 
 function doe(n){
@@ -157,66 +157,6 @@ var style = `
     }
 `;
 
-function createForeground(){
-    return this('div',div=>{
-        this(div.style,{
-            backgroundColor:'white',
-            position:'absolute',
-            left:'50%',
-            top:'50%',
-            transform:'translate(-50%,-50%)',
-            maxHeight:'100%',
-            overflowY:'auto',
-        });
-        div.onclick=e=>
-            e.stopPropagation();
-    })
-}
-function createBF(){
-    let
-        foreground=createForeground.call(this),
-        div=this('div',n=>{
-            this(n.style,{
-                position:'fixed',
-                left:'0',
-                top:'0',
-                width:'100%',
-                height:'100%',
-                background:'rgba(0,0,0,0.5)',
-            });
-        },foreground),
-        res=new EventEmmiter;
-    res.node=div;
-    res.end=_=>
-        div.parentNode.removeChild(div);
-    div.onclick=e=>{
-        e.preventDefault();
-        e.stopPropagation();
-        res.emit('backClick');
-    };
-    res.appendChild=e=>
-        foreground.appendChild(e);
-    return res
-}
-
-function createFileButton(textContent='Upload'){
-    let e=new EventEmmiter;
-    e.n=this.button(textContent,{onclick:async()=>{
-        e.emit('file',await getFile.call(this,e));
-    }});
-    return e
-}
-async function getFile(e){
-    if(!e.input)
-        e.input=this.input({type:'file',multiple:true,});
-    e.input.value=null;
-    e.input.click();
-    await new Promise(rs=>e.input.onchange=rs);
-    return e.input.files
-}
-
-var dom = Object.assign(dom$1,{createFileButton,createBF});
-
 function View(progress){
     this._progress=progress;
     this.node=createNode(this);
@@ -225,7 +165,7 @@ Object.defineProperty(View.prototype,'free',{get(){
     cancelAnimationFrame(this._animationFrame);
 }});
 function createNode(view){
-    let n=dom.div({className:'progressBar'});
+    let n=doe$1.div({className:'progressBar'});
     let f=()=>{
         view._animationFrame=requestAnimationFrame(f);
         n.style.left=(1-view._progress._animationCursor)/2*100+'%';
@@ -345,7 +285,7 @@ function User(){
 Object.setPrototypeOf(User.prototype,AltheaObject.prototype);
 User.prototype._loader='getUser';
 User.prototype._createA=function(by){
-    let a=dom.a({className:'user'});
+    let a=doe$1.a({className:'user'});
     let final=(async()=>{
         await this.load([
             'username',
@@ -384,12 +324,12 @@ User.prototype.createUi=async function(cu){
         'username',
         'nickname',
     ]);
-    return dom.div(
-        dom.p(`ID: ${this.id}`),
-        dom.p(`Username: ${this.username}`),
-        this.nickname&&dom.p(`Nickname: ${this.nickname}`),
-        this.equal(cu)&&dom.p(
-            dom.a(
+    return doe$1.div(
+        doe$1.p(`ID: ${this.id}`),
+        doe$1.p(`Username: ${this.username}`),
+        this.nickname&&doe$1.p(`Nickname: ${this.nickname}`),
+        this.equal(cu)&&doe$1.p(
+            doe$1.a(
                 {href:'edituser'},
                 'Update the information or change password.'
             ),
@@ -424,7 +364,7 @@ var login$1 = async(site,loginForm)=>{
 };
 
 function innerFormDiv(site,loginForm){
-    let div=dom.div(
+    let div=doe$1.div(
         usernameDiv(loginForm),
         passwordDiv(loginForm),
         loginForm.failedDiv=failedDiv(),
@@ -442,7 +382,7 @@ function innerFormDiv(site,loginForm){
     return div
 }
 function usernameDiv(loginForm){
-    return dom.div(loginForm.usernameInput=dom.input(n=>{
+    return doe$1.div(loginForm.usernameInput=doe$1.input(n=>{
         // let chrome 53 know it's login form
         n.name='username';
         n.placeholder='Username';
@@ -450,12 +390,12 @@ function usernameDiv(loginForm){
     }))
 }
 function passwordDiv(loginForm){
-    return dom.div(
+    return doe$1.div(
         n=>{n.style.marginTop='24px';},
         loginForm.passwordInput=passwordInput()
     )
     function passwordInput(){
-        return dom.input(
+        return doe$1.input(
             n=>{n.style.padding='4px';},
             {
                 type:'password',
@@ -467,8 +407,8 @@ function passwordDiv(loginForm){
     }
 }
 function failedDiv(){
-    return dom.div(
-        n=>{dom(n.style,{display:'none',marginTop:'24px'});},
+    return doe$1.div(
+        n=>{doe$1(n.style,{display:'none',marginTop:'24px'});},
         `
             Login failed, due to invalid username and/or
             mismatched password.
@@ -476,12 +416,12 @@ function failedDiv(){
     )
 }
 function loginButtonDiv(site,loginForm){
-    return dom.div(
+    return doe$1.div(
         n=>{n.style.marginTop='24px';},
         loginForm.loginButton=loginButton()
     )
     function loginButton(){
-        let button=dom.button('Log In');
+        let button=doe$1.button('Log In');
         button.style.padding='4px';
         button.onclick=e=>{
             e.stopPropagation();
@@ -491,11 +431,71 @@ function loginButtonDiv(site,loginForm){
     }
 }
 function registerADiv(){
-    return dom.div(
-        dom.a('Register a new user.',{href:'user'}),
+    return doe$1.div(
+        doe$1.a('Register a new user.',{href:'user'}),
         n=>{n.style.marginTop='24px';}
     )
 }
+
+function createForeground(){
+    return this('div',div=>{
+        this(div.style,{
+            backgroundColor:'white',
+            position:'absolute',
+            left:'50%',
+            top:'50%',
+            transform:'translate(-50%,-50%)',
+            maxHeight:'100%',
+            overflowY:'auto',
+        });
+        div.onclick=e=>
+            e.stopPropagation();
+    })
+}
+function createBF(){
+    let
+        foreground=createForeground.call(this),
+        div=this('div',n=>{
+            this(n.style,{
+                position:'fixed',
+                left:'0',
+                top:'0',
+                width:'100%',
+                height:'100%',
+                background:'rgba(0,0,0,0.5)',
+            });
+        },foreground),
+        res=new EventEmmiter;
+    res.node=div;
+    res.end=_=>
+        div.parentNode.removeChild(div);
+    div.onclick=e=>{
+        e.preventDefault();
+        e.stopPropagation();
+        res.emit('backClick');
+    };
+    res.appendChild=e=>
+        foreground.appendChild(e);
+    return res
+}
+
+function createFileButton(textContent='Upload'){
+    let e=new EventEmmiter;
+    e.n=this.button(textContent,{onclick:async()=>{
+        e.emit('file',await getFile.call(this,e));
+    }});
+    return e
+}
+async function getFile(e){
+    if(!e.input)
+        e.input=this.input({type:'file',multiple:true,});
+    e.input.value=null;
+    e.input.click();
+    await new Promise(rs=>e.input.onchange=rs);
+    return e.input.files
+}
+
+var dom = {createFileButton,createBF};
 
 var loginForm = {get(){
     let bF=dom.createBF();
@@ -724,7 +724,7 @@ function materialComponent(){
             let module$1=await module();
             await Promise.all([
                 (async()=>{
-                    dom.head(dom.style(
+                    doe$1.head(doe$1.style(
                         await module$1.getByPath(componentCss)
                     ));
                 })(),
@@ -739,7 +739,7 @@ function materialIcon(){
     if(!materialIconLoaded)
         materialIconLoaded=(async()=>{
             let module$1=await module();
-            dom.head(dom.style(
+            doe$1.head(doe$1.style(
                 await module$1.getByPath(iconCss)
             ));
         })();

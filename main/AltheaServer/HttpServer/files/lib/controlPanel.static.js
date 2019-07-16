@@ -1,11 +1,11 @@
-import { dom, html, Site } from '/lib/core.static.js';
+import { doe, html, Site } from '/lib/core.static.js';
 
 function PluginsPage(site){
     this._site=site;
 }
 PluginsPage.prototype.initialize=function(){
     this.isInitialized=true;
-    this.mainDiv=dom.div();
+    this.mainDiv=doe.div();
     this.load();
 };
 PluginsPage.prototype.load=async function(){
@@ -14,7 +14,7 @@ PluginsPage.prototype.load=async function(){
 function log(data){
     let site=this._site;
     this.mainDiv.innerHTML='';
-    let table=dom.table(
+    let table=doe.table(
         {
             className:'bordered padding4px',
             innerHTML:`
@@ -29,21 +29,21 @@ function log(data){
     this.mainDiv.appendChild(table);
     data.sort((p,q)=>p.name.localeCompare(q.name));
     data.map(plugin=>{
-        table.appendChild(dom.tr(
+        table.appendChild(doe.tr(
             td_name(),
             td_isActivated()
         ));
         function td_name(){
-            return dom.td(
+            return doe.td(
                 plugin.name,
                 td=>{td.style.fontFamily='Monospace';}
             )
         }
         function td_isActivated(){
-            return dom.td(input_isActivated())
+            return doe.td(input_isActivated())
         }
         function input_isActivated(){
-            return dom.input({
+            return doe.input({
                 type:'checkbox',
                 checked:plugin.isactivated,
                 async onchange(){
@@ -73,7 +73,7 @@ function UsersPage(site){
     this.initialize=()=>{
         this.isInitialized=true;
         that=this;
-        this.mainDiv=dom.div();
+        this.mainDiv=doe.div();
         this.load();
     };
     this.load=async()=>{
@@ -90,7 +90,7 @@ function UsersPage(site){
     };
     function log(data){
         that.mainDiv.innerHTML='';
-        let table=dom.table({className:'bordered padding4px'});
+        let table=doe.table({className:'bordered padding4px'});
         that.mainDiv.appendChild(table);
         table.innerHTML=
             '<thead>'+
@@ -104,32 +104,32 @@ function UsersPage(site){
             table.appendChild(tr_user(user))
         );
         function tr_user(user){
-            return dom.tr(
+            return doe.tr(
                 td_id(),
                 td_username(),
                 td_nickname(),
             )
             function td_id(){
-                let td=dom.td();
+                let td=doe.td();
                 td.style.textAlign='right';
                 td.innerHTML=
                     '<code>'+html.encodeText(user.id)+'</code>';
                 return td
             }
             function td_username(){
-                return dom.td(user.usernameA,n=>{
+                return doe.td(user.usernameA,n=>{
                     n.style.fontFamily='monospace';
                 })
             }
             function td_nickname(){
-                return dom.td(user.nickname)
+                return doe.td(user.nickname)
             }
         }
     }
 }
 
 function createTable(io,data){
-    return dom.table({
+    return doe.table({
         className:'bordered padding4px',
         innerHTML:`
             <thead>
@@ -156,35 +156,35 @@ function createTable(io,data){
     })
 }
 function tr(plugin){
-    return dom.tr(
+    return doe.tr(
         td_id(plugin),
         td_serverId(plugin),
         td_key(plugin)
     )
 }
 function td_id(plugin){
-    return dom.td(n=>{
+    return doe.td(n=>{
         n.style.fontFamily='Monospace';
         n.style.textAlign='right';
     },plugin.id)
 }
 function td_serverId(plugin){
-    return dom.td(n=>{
+    return doe.td(n=>{
         n.style.fontFamily='Monospace';
         n.style.textAlign='right';
     },plugin.id_server)
 }
 function td_key(plugin){
-    return dom.td(plugin.key)
+    return doe.td(plugin.key)
 }
 function tr_code(io,plugin,code){
-    return dom.tr(td_code(io,plugin,code))
+    return doe.tr(td_code(io,plugin,code))
 }
 function td_code(io,plugin,code){
-    return dom.td({colSpan:4},div_code(io,plugin,code))
+    return doe.td({colSpan:4},div_code(io,plugin,code))
 }
 function div_code(io,plugin,code){
-    return dom.div(
+    return doe.div(
         {
             ondblclick(){
                 let
@@ -199,7 +199,7 @@ function div_code(io,plugin,code){
             ).join('<span style=color:blue>$</span>\n'),
         },
         n=>{
-            dom(n.style,{
+            doe(n.style,{
                 fontFamily:'monospace',
                 whiteSpace:'pre-wrap',
                 wordBreak:'break-all',
@@ -209,7 +209,7 @@ function div_code(io,plugin,code){
     )
 }
 function textarea_code(io,plugin,code){
-    return dom.textarea({
+    return doe.textarea({
         async onblur(){
             let parent=this.parentNode;
             parent.removeChild(this);
@@ -231,7 +231,7 @@ function SitesPage(io){
 }
 SitesPage.prototype.initialize=function(){
     this.isInitialized=true;
-    this.mainDiv=dom.div();
+    this.mainDiv=doe.div();
     this.load();
 };
 SitesPage.prototype.load=async function(){
@@ -284,41 +284,41 @@ function ControlPanel(site){
     };
 }
 ControlPanel.prototype.createUi=function(){
-    return dom.div({className:'root'},
-        dom.h1(dom.a({href:'control-panel'},'Control Panel')),
-        dom.div({style:'width:100%'},
-            this._div_menu=dom.div({
+    return doe.div({className:'root'},
+        doe.h1(doe.a({href:'control-panel'},'Control Panel')),
+        doe.div({style:'width:100%'},
+            this._div_menu=doe.div({
                     className:'menu',
                 },
-                dom.a({
+                doe.a({
                     href:'javascript:',
                     onclick:_=>this.load('sites'),
                 },'Sites'),
                 ' ',
-                dom.a({
+                doe.a({
                     href:'javascript:',
                     onclick:_=>this.load('users'),
                 },'Users'),
                 ' ',
-                dom.a({
+                doe.a({
                     href:'javascript:',
                     onclick:_=>this.load('plugins'),
                 },'Plugins'),
             ),
-            this._div_page=dom.div({
+            this._div_page=doe.div({
                 className:'page',
                 style:'width:100%'
             }),
         ),
     )
 };
-ControlPanel.style=dom.style(style);
+ControlPanel.style=doe.style(style);
 
-dom.head(ControlPanel.style);
+doe.head(ControlPanel.style);
 let
     site=new Site,
     settings=new ControlPanel(site)
 ;(async()=>{
     await settings.loadPlugins;
-    dom.body(settings.createUi());
+    doe.body(settings.createUi());
 })();

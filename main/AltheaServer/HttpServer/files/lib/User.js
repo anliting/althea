@@ -1,12 +1,12 @@
-import dom from './dom.js'
-import AltheaObject from './AltheaObject.js'
+import doe from'../_lib/doe/main/doe.mjs'
+import AltheaObject from'./AltheaObject.js'
 function User(){
     AltheaObject.apply(this,arguments)
 }
 Object.setPrototypeOf(User.prototype,AltheaObject.prototype)
 User.prototype._loader='getUser'
 User.prototype._createA=function(by){
-    let a=dom.a({className:'user'})
+    let a=doe.a({className:'user'})
     let final=(async()=>{
         await this.load([
             'username',
@@ -45,12 +45,12 @@ User.prototype.createUi=async function(cu){
         'username',
         'nickname',
     ])
-    return dom.div(
-        dom.p(`ID: ${this.id}`),
-        dom.p(`Username: ${this.username}`),
-        this.nickname&&dom.p(`Nickname: ${this.nickname}`),
-        this.equal(cu)&&dom.p(
-            dom.a(
+    return doe.div(
+        doe.p(`ID: ${this.id}`),
+        doe.p(`Username: ${this.username}`),
+        this.nickname&&doe.p(`Nickname: ${this.nickname}`),
+        this.equal(cu)&&doe.p(
+            doe.a(
                 {href:'edituser'},
                 'Update the information or change password.'
             ),

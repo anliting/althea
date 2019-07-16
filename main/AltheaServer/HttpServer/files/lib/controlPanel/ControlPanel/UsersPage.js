@@ -1,10 +1,10 @@
-import{dom,html}from             '/lib/core.static.js'
+import{doe,html}from             '/lib/core.static.js'
 function UsersPage(site){
     let that
     this.initialize=()=>{
         this.isInitialized=true
         that=this
-        this.mainDiv=dom.div()
+        this.mainDiv=doe.div()
         this.load()
     }
     this.load=async()=>{
@@ -21,7 +21,7 @@ function UsersPage(site){
     }
     function log(data){
         that.mainDiv.innerHTML=''
-        let table=dom.table({className:'bordered padding4px'})
+        let table=doe.table({className:'bordered padding4px'})
         that.mainDiv.appendChild(table)
         table.innerHTML=
             '<thead>'+
@@ -35,25 +35,25 @@ function UsersPage(site){
             table.appendChild(tr_user(user))
         )
         function tr_user(user){
-            return dom.tr(
+            return doe.tr(
                 td_id(),
                 td_username(),
                 td_nickname(),
             )
             function td_id(){
-                let td=dom.td()
+                let td=doe.td()
                 td.style.textAlign='right'
                 td.innerHTML=
                     '<code>'+html.encodeText(user.id)+'</code>'
                 return td
             }
             function td_username(){
-                return dom.td(user.usernameA,n=>{
+                return doe.td(user.usernameA,n=>{
                     n.style.fontFamily='monospace'
                 })
             }
             function td_nickname(){
-                return dom.td(user.nickname)
+                return doe.td(user.nickname)
             }
         }
     }

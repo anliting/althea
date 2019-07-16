@@ -1,11 +1,11 @@
-import{dom}from             '/lib/core.static.js'
+import{doe}from             '/lib/core.static.js'
 import createTable from     './SitesPage/createTable.js'
 function SitesPage(io){
     this._io=io
 }
 SitesPage.prototype.initialize=function(){
     this.isInitialized=true
-    this.mainDiv=dom.div()
+    this.mainDiv=doe.div()
     this.load()
 }
 SitesPage.prototype.load=async function(){

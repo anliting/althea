@@ -1,4 +1,4 @@
-import dom from'../dom.js'
+import doe from'../../_lib/doe/main/doe.mjs'
 import moduleLoader from'./module.js'
 let
     root='https://unpkg.com/material-components-web@0.24.0/dist',
@@ -18,7 +18,7 @@ function materialComponent(){
             let module=await moduleLoader()
             await Promise.all([
                 (async()=>{
-                    dom.head(dom.style(
+                    doe.head(doe.style(
                         await module.getByPath(componentCss)
                     ))
                 })(),
@@ -33,7 +33,7 @@ function materialIcon(){
     if(!materialIconLoaded)
         materialIconLoaded=(async()=>{
             let module=await moduleLoader()
-            dom.head(dom.style(
+            doe.head(doe.style(
                 await module.getByPath(iconCss)
             ))
         })()

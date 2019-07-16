@@ -1,4 +1,4 @@
-import{dom}from             '/lib/core.static.js'
+import{doe}from             '/lib/core.static.js'
 import PluginsPage from     './ControlPanel/PluginsPage.js'
 import UsersPage from       './ControlPanel/UsersPage.js'
 import SitesPage from       './ControlPanel/SitesPage.js'
@@ -30,33 +30,33 @@ function ControlPanel(site){
     }
 }
 ControlPanel.prototype.createUi=function(){
-    return dom.div({className:'root'},
-        dom.h1(dom.a({href:'control-panel'},'Control Panel')),
-        dom.div({style:'width:100%'},
-            this._div_menu=dom.div({
+    return doe.div({className:'root'},
+        doe.h1(doe.a({href:'control-panel'},'Control Panel')),
+        doe.div({style:'width:100%'},
+            this._div_menu=doe.div({
                     className:'menu',
                 },
-                dom.a({
+                doe.a({
                     href:'javascript:',
                     onclick:_=>this.load('sites'),
                 },'Sites'),
                 ' ',
-                dom.a({
+                doe.a({
                     href:'javascript:',
                     onclick:_=>this.load('users'),
                 },'Users'),
                 ' ',
-                dom.a({
+                doe.a({
                     href:'javascript:',
                     onclick:_=>this.load('plugins'),
                 },'Plugins'),
             ),
-            this._div_page=dom.div({
+            this._div_page=doe.div({
                 className:'page',
                 style:'width:100%'
             }),
         ),
     )
 }
-ControlPanel.style=dom.style(style)
+ControlPanel.style=doe.style(style)
 export default ControlPanel

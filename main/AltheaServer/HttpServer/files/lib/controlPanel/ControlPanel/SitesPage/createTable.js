@@ -1,6 +1,6 @@
-import{dom,html}from             '/lib/core.static.js'
+import{doe,html}from             '/lib/core.static.js'
 function createTable(io,data){
-    return dom.table({
+    return doe.table({
         className:'bordered padding4px',
         innerHTML:`
             <thead>
@@ -27,35 +27,35 @@ function createTable(io,data){
     })
 }
 function tr(plugin){
-    return dom.tr(
+    return doe.tr(
         td_id(plugin),
         td_serverId(plugin),
         td_key(plugin)
     )
 }
 function td_id(plugin){
-    return dom.td(n=>{
+    return doe.td(n=>{
         n.style.fontFamily='Monospace'
         n.style.textAlign='right'
     },plugin.id)
 }
 function td_serverId(plugin){
-    return dom.td(n=>{
+    return doe.td(n=>{
         n.style.fontFamily='Monospace'
         n.style.textAlign='right'
     },plugin.id_server)
 }
 function td_key(plugin){
-    return dom.td(plugin.key)
+    return doe.td(plugin.key)
 }
 function tr_code(io,plugin,code){
-    return dom.tr(td_code(io,plugin,code))
+    return doe.tr(td_code(io,plugin,code))
 }
 function td_code(io,plugin,code){
-    return dom.td({colSpan:4},div_code(io,plugin,code))
+    return doe.td({colSpan:4},div_code(io,plugin,code))
 }
 function div_code(io,plugin,code){
-    return dom.div(
+    return doe.div(
         {
             ondblclick(){
                 let
@@ -70,7 +70,7 @@ function div_code(io,plugin,code){
             ).join('<span style=color:blue>$</span>\n'),
         },
         n=>{
-            dom(n.style,{
+            doe(n.style,{
                 fontFamily:'monospace',
                 whiteSpace:'pre-wrap',
                 wordBreak:'break-all',
@@ -80,7 +80,7 @@ function div_code(io,plugin,code){
     )
 }
 function textarea_code(io,plugin,code){
-    return dom.textarea({
+    return doe.textarea({
         async onblur(){
             let parent=this.parentNode
             parent.removeChild(this)

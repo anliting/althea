@@ -1,10 +1,10 @@
-import{dom}from             '/lib/core.static.js'
+import{doe}from             '/lib/core.static.js'
 function PluginsPage(site){
     this._site=site
 }
 PluginsPage.prototype.initialize=function(){
     this.isInitialized=true
-    this.mainDiv=dom.div()
+    this.mainDiv=doe.div()
     this.load()
 }
 PluginsPage.prototype.load=async function(){
@@ -13,7 +13,7 @@ PluginsPage.prototype.load=async function(){
 function log(data){
     let site=this._site
     this.mainDiv.innerHTML=''
-    let table=dom.table(
+    let table=doe.table(
         {
             className:'bordered padding4px',
             innerHTML:`
@@ -28,21 +28,21 @@ function log(data){
     this.mainDiv.appendChild(table)
     data.sort((p,q)=>p.name.localeCompare(q.name))
     data.map(plugin=>{
-        table.appendChild(dom.tr(
+        table.appendChild(doe.tr(
             td_name(),
             td_isActivated()
         ))
         function td_name(){
-            return dom.td(
+            return doe.td(
                 plugin.name,
                 td=>{td.style.fontFamily='Monospace'}
             )
         }
         function td_isActivated(){
-            return dom.td(input_isActivated())
+            return doe.td(input_isActivated())
         }
         function input_isActivated(){
-            return dom.input({
+            return doe.input({
                 type:'checkbox',
                 checked:plugin.isactivated,
                 async onchange(){
