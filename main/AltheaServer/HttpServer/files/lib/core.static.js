@@ -756,27 +756,29 @@ function material(){
 }
 function materialComponent(){
     if(!materialComponentLoaded)
-        materialComponentLoaded=(async()=>{
-            let module$1=await module();
-            await Promise.all([
-                (async()=>{
-                    doe$1.head(doe$1.style(
-                        await module$1.getByPath(componentCss)
-                    ));
-                })(),
-                module$1.scriptByPath(
-                    `${root}/material-components-web.min.js`
-                ),
-            ]);
-        })();
+        materialComponentLoaded=Promise.all([
+            (async()=>{
+                doe$1.head(doe$1.style(
+                    await(await fetch(componentCss)).text()
+                ));
+            })(),
+            new Promise(rs=>{
+                doe$1.body(doe$1.script({
+                    onload(){
+                        doe$1.body(1,this);
+                        rs();
+                    },
+                    src:`${root}/material-components-web.min.js`,
+                }));
+            }),
+        ]);
     return materialComponentLoaded
 }
 function materialIcon(){
     if(!materialIconLoaded)
         materialIconLoaded=(async()=>{
-            let module$1=await module();
             doe$1.head(doe$1.style(
-                await module$1.getByPath(iconCss)
+                await(await fetch(iconCss)).text()
             ));
         })();
     return materialIconLoaded

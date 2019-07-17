@@ -14,27 +14,29 @@ function material(){
 }
 function materialComponent(){
     if(!materialComponentLoaded)
-        materialComponentLoaded=(async()=>{
-            let module=await moduleLoader()
-            await Promise.all([
-                (async()=>{
-                    doe.head(doe.style(
-                        await module.getByPath(componentCss)
-                    ))
-                })(),
-                module.scriptByPath(
-                    `${root}/material-components-web.min.js`
-                ),
-            ])
-        })()
+        materialComponentLoaded=Promise.all([
+            (async()=>{
+                doe.head(doe.style(
+                    await(await fetch(componentCss)).text()
+                ))
+            })(),
+            new Promise(rs=>{
+                doe.body(doe.script({
+                    onload(){
+                        doe.body(1,this)
+                        rs()
+                    },
+                    src:`${root}/material-components-web.min.js`,
+                }))
+            }),
+        ])
     return materialComponentLoaded
 }
 function materialIcon(){
     if(!materialIconLoaded)
         materialIconLoaded=(async()=>{
-            let module=await moduleLoader()
             doe.head(doe.style(
-                await module.getByPath(iconCss)
+                await(await fetch(iconCss)).text()
             ))
         })()
     return materialIconLoaded
