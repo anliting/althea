@@ -438,8 +438,8 @@ function registerADiv(){
 }
 
 function createForeground(){
-    return this('div',div=>{
-        this(div.style,{
+    return doe$1.div(div=>{
+        doe$1(div.style,{
             backgroundColor:'white',
             position:'absolute',
             left:'50%',
@@ -454,9 +454,9 @@ function createForeground(){
 }
 function createBF(){
     let
-        foreground=createForeground.call(this),
-        div=this('div',n=>{
-            this(n.style,{
+        foreground=createForeground(),
+        div=doe$1.div(n=>{
+            doe$1(n.style,{
                 position:'fixed',
                 left:'0',
                 top:'0',
@@ -481,14 +481,14 @@ function createBF(){
 
 function createFileButton(textContent='Upload'){
     let e=new EventEmmiter;
-    e.n=this.button(textContent,{onclick:async()=>{
-        e.emit('file',await getFile.call(this,e));
+    e.n=doe$1.button(textContent,{onclick:async()=>{
+        e.emit('file',await getFile(e));
     }});
     return e
 }
 async function getFile(e){
     if(!e.input)
-        e.input=this.input({type:'file',multiple:true,});
+        e.input=doe$1.input({type:'file',multiple:true,});
     e.input.value=null;
     e.input.click();
     await new Promise(rs=>e.input.onchange=rs);

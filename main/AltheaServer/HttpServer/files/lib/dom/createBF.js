@@ -1,7 +1,8 @@
 import EventEmmiter from'../../_lib/EventEmmiter/main/EventEmmiter.mjs'
+import doe from'../../_lib/doe/main/doe.mjs'
 function createForeground(){
-    return this('div',div=>{
-        this(div.style,{
+    return doe.div(div=>{
+        doe(div.style,{
             backgroundColor:'white',
             position:'absolute',
             left:'50%',
@@ -16,9 +17,9 @@ function createForeground(){
 }
 function createBF(){
     let
-        foreground=createForeground.call(this),
-        div=this('div',n=>{
-            this(n.style,{
+        foreground=createForeground(),
+        div=doe.div(n=>{
+            doe(n.style,{
                 position:'fixed',
                 left:'0',
                 top:'0',
