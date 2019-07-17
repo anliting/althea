@@ -1,6 +1,3 @@
-import { path, uri } from 'https://gitcdn.link/cdn/anliting/simple.js/09b9cd311f438c07fd1ac0ead044aed97158faf3/src/simple.static.js';
-export { path, uri } from 'https://gitcdn.link/cdn/anliting/simple.js/09b9cd311f438c07fd1ac0ead044aed97158faf3/src/simple.static.js';
-
 function doe(n){
     let
         state=0,
@@ -86,6 +83,45 @@ EventEmmiter.prototype.on=function(key,listener){
 EventEmmiter.prototype.once=function(key,listener){
     this._ensureKeyExist(key);
     this._listeners[key].set(listener,{once:true});
+};
+
+var path = {
+    normalize(s){
+        let res;
+        if(s[0]=='/'){
+            let a=[];
+            for(let t of s.split('/')){
+                if(t==''||t=='.')
+                    continue
+                if(t=='..'){
+                    if(a.length)
+                        a.pop();
+                    continue
+                }
+                a.push(t);
+            }
+            res='/'+a.join('/')+(a.length&&s[s.length-1]=='/'?'/':'');
+        }else{
+            let a=[];
+            for(let t of s.split('/')){
+                if(t==''||t=='.')
+                    continue
+                if(t=='..'&&a.length){
+                    a.pop();
+                    continue
+                }
+                a.push(t);
+            }
+            res=(a.length?a.join('/'):'.')+(s[s.length-1]=='/'?'/':'');
+        }
+        return res
+    },
+};
+
+let uri={};
+uri.matchAbsoluteUri=function(s){
+// from http://jmrware.com/articles/2009/uri_regexp/URI_regex.html
+    return s.match(/[A-Za-z][A-Za-z0-9+\-.]*:(?:\/\/(?:(?:[A-Za-z0-9\-._~!$&'()*+,;=:]|%[0-9A-Fa-f]{2})*@)?(?:\[(?:(?:(?:(?:[0-9A-Fa-f]{1,4}:){6}|::(?:[0-9A-Fa-f]{1,4}:){5}|(?:[0-9A-Fa-f]{1,4})?::(?:[0-9A-Fa-f]{1,4}:){4}|(?:(?:[0-9A-Fa-f]{1,4}:){0,1}[0-9A-Fa-f]{1,4})?::(?:[0-9A-Fa-f]{1,4}:){3}|(?:(?:[0-9A-Fa-f]{1,4}:){0,2}[0-9A-Fa-f]{1,4})?::(?:[0-9A-Fa-f]{1,4}:){2}|(?:(?:[0-9A-Fa-f]{1,4}:){0,3}[0-9A-Fa-f]{1,4})?::[0-9A-Fa-f]{1,4}:|(?:(?:[0-9A-Fa-f]{1,4}:){0,4}[0-9A-Fa-f]{1,4})?::)(?:[0-9A-Fa-f]{1,4}:[0-9A-Fa-f]{1,4}|(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?))|(?:(?:[0-9A-Fa-f]{1,4}:){0,5}[0-9A-Fa-f]{1,4})?::[0-9A-Fa-f]{1,4}|(?:(?:[0-9A-Fa-f]{1,4}:){0,6}[0-9A-Fa-f]{1,4})?::)|[Vv][0-9A-Fa-f]+\.[A-Za-z0-9\-._~!$&'()*+,;=:]+)\]|(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)|(?:[A-Za-z0-9\-._~!$&'()*+,;=]|%[0-9A-Fa-f]{2})*)(?::[0-9]*)?(?:\/(?:[A-Za-z0-9\-._~!$&'()*+,;=:@]|%[0-9A-Fa-f]{2})*)*|\/(?:(?:[A-Za-z0-9\-._~!$&'()*+,;=:@]|%[0-9A-Fa-f]{2})+(?:\/(?:[A-Za-z0-9\-._~!$&'()*+,;=:@]|%[0-9A-Fa-f]{2})*)*)?|(?:[A-Za-z0-9\-._~!$&'()*+,;=:@]|%[0-9A-Fa-f]{2})+(?:\/(?:[A-Za-z0-9\-._~!$&'()*+,;=:@]|%[0-9A-Fa-f]{2})*)*|)(?:\?(?:[A-Za-z0-9\-._~!$&'()*+,;=:@\/?]|%[0-9A-Fa-f]{2})*)?(?:\#(?:[A-Za-z0-9\-._~!$&'()*+,;=:@\/?]|%[0-9A-Fa-f]{2})*)?/)
 };
 
 function AltheaObject(io,id){
@@ -838,4 +874,4 @@ var core = {
 };
 
 export default core;
-export { AltheaObject, EventEmmiter, ImageUploader, Progress, Site, Snapshot, User, res as arg, browser, doe$1 as doe, dom, general, hacker, html, load, order };
+export { AltheaObject, EventEmmiter, ImageUploader, Progress, Site, Snapshot, User, res as arg, browser, doe$1 as doe, dom, general, hacker, html, load, order, path, uri };

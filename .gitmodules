@@ -7,3 +7,9 @@
 [submodule "main/AltheaServer/HttpServer/files/_lib/algo"]
 	path = main/AltheaServer/HttpServer/files/_lib/algo
 	url = https://github.com/anliting/algo.git
+[submodule "main/AltheaServer/HttpServer/files/_lib/path"]
+	path = main/AltheaServer/HttpServer/files/_lib/path
+	url = https://github.com/anliting/path.git
+[submodule "main/AltheaServer/HttpServer/files/_lib/uri"]
+	path = main/AltheaServer/HttpServer/files/_lib/uri
+	url = https://github.com/anliting/uri.git
