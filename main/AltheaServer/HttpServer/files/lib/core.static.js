@@ -1,4 +1,4 @@
-import { integerBinarySearch, path, uri } from 'https://gitcdn.link/cdn/anliting/simple.js/09b9cd311f438c07fd1ac0ead044aed97158faf3/src/simple.static.js';
+import { path, uri } from 'https://gitcdn.link/cdn/anliting/simple.js/09b9cd311f438c07fd1ac0ead044aed97158faf3/src/simple.static.js';
 export { path, uri } from 'https://gitcdn.link/cdn/anliting/simple.js/09b9cd311f438c07fd1ac0ead044aed97158faf3/src/simple.static.js';
 
 function doe(n){
@@ -753,6 +753,44 @@ var material$1 = {
 
 var load = Object.assign({module},material$1);
 
+function IntegerBinarySearch(head,tail){
+    this._head=head;
+    this._tail=tail;
+}
+Object.defineProperty(IntegerBinarySearch.prototype,'ask',{get(){
+    return this._head!=this._tail
+}});
+Object.defineProperty(IntegerBinarySearch.prototype,'in',{set(val){
+    if(val)
+        this._tail=this.out;
+    else
+        this._head=this.out+1;
+}});
+Object.defineProperty(IntegerBinarySearch.prototype,'out',{get(){
+    return ~~((this._head+this._tail)/2)
+}});
+
+function arrayLowerBound(a,v,lt){
+    return integerBinarySearch(i=>!lt(a[i],v),0,a.length)
+}
+function arrayUpperBound(a,v,lt){
+    return integerBinarySearch(i=>lt(v,a[i]),0,a.length)
+}
+function integerBinarySearch(func,f,l){
+    while(f-l){
+        let m=~~((f+l)/2);
+        if(func(m))
+            l=m;
+        else
+            f=m+1;
+    }
+    return f
+}
+var integerBinarySearch$1 = Object.assign(
+    integerBinarySearch,
+    {arrayLowerBound,arrayUpperBound}
+);
+
 function order(a,ib,ap){
     post$1(
         a.map(async(p,i)=>({
@@ -768,7 +806,7 @@ function post$1(a,ib,ap,lt){
     let b=[];
     a.map(async e=>{
         e=await e;
-        let p=integerBinarySearch.arrayLowerBound(b,e,lt);
+        let p=integerBinarySearch$1.arrayLowerBound(b,e,lt);
         if(p<b.length)
             ib(e,b[p]);
         else

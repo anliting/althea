@@ -4,3 +4,6 @@
 [submodule "main/AltheaServer/HttpServer/files/_lib/doe"]
 	path = main/AltheaServer/HttpServer/files/_lib/doe
 	url = https://github.com/anliting/doe.git
+[submodule "main/AltheaServer/HttpServer/files/_lib/algo"]
+	path = main/AltheaServer/HttpServer/files/_lib/algo
+	url = https://github.com/anliting/algo.git
