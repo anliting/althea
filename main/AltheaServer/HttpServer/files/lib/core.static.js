@@ -584,9 +584,6 @@ function loadUserProperties(o){
     };
 }
 
-function evalImport(s){
-    return eval(`import(${JSON.stringify(s)})`)
-}
 function Site(){
     EventEmmiter.call(this);
     // start caches
@@ -643,7 +640,7 @@ Site.prototype.loadPlugins=async function(name){
     return Promise.all(Object.values(
         await this.send({function:'getPluginScripts',module:name,})
     ).filter(v=>v).map(async s=>
-        (await evalImport(s)).default
+        (await import(s)).default
     ))
 };
 Site.prototype.path={
