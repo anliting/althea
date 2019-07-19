@@ -1,8 +1,8 @@
-import docTrans from './Site/docTrans.js'
-import post from './Site/prototype.post.js'
-import send from './Site/prototype.send.js'
-import loadUserProperties from './Site/loadUserProperties.js'
-import EventEmmiter from'../_lib/EventEmmiter/main/EventEmmiter.mjs'
+import docTrans from            './Site/docTrans.js'
+import post from                './Site/prototype.post.js'
+import send from                './Site/prototype.send.js'
+import loadUserProperties from  './Site/loadUserProperties.js'
+import EventEmmiter from        '../_lib/EventEmmiter/main/EventEmmiter.mjs'
 function Site(){
     EventEmmiter.call(this)
     // start caches
@@ -54,11 +54,10 @@ Object.setPrototypeOf(Site.prototype,EventEmmiter.prototype)
 Site.prototype.applyPlugins=async function(name,arg){
     return Promise.all((await this.loadPlugins(name)).map(f=>f(arg)))
 }
-
 Site.prototype.loadPlugins=async function(name){
-    return Promise.all(Object.values(
+    return Promise.all((
         await this.send({function:'getPluginScripts',module:name,})
-    ).filter(v=>v).map(async s=>
+    ).map(async s=>
         (await import(s)).default
     ))
 }

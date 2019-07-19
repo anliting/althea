@@ -24,6 +24,26 @@ function AltheaServer(config,dbconfig){
     this.queryFunctions=    Object.create(queryFunctions)
     this.load=createLoad.call(this)
 }
+AltheaServer.prototype._getActivatedPluginByModule=async function(module){
+    function loadModule(id,name,module){
+        if(
+            id in this.clientPluginModules&&
+            module in this.clientPluginModules[id]
+        )
+            return`/plugins/${name}/${
+                this.clientPluginModules[id][module]
+            }`
+        return''
+    }
+    let rows=await this.database.selectActivatedPlugins()
+    let result=[]
+    rows.map(row=>{
+        let e=loadModule.call(this,row.id,row.name,module)
+        if(e)
+            result.push(e)
+    })
+    return result
+}
 AltheaServer.prototype.end=async function(){
     await this.load
     if(this.httpServer){
