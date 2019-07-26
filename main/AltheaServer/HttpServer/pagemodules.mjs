@@ -5,12 +5,15 @@ import s500 from            './pagemodules/500.mjs'
 import api from             './pagemodules/api.mjs'
 import controlPanel from    './pagemodules/controlPanel.mjs'
 import sharedWorker from    './pagemodules/sharedWorker.mjs'
+import sharedWorkerForChromeMobile from
+    './pagemodules/sharedWorkerForChromeMobile.mjs'
 export default{
     s400,
     s403,
     s404,
     s500,
-    '/_api':                api,
-    '/control-panel':       controlPanel,
-    '/%23sharedWorker':     sharedWorker,
+    '/_api':                            api,
+    '/control-panel':                   controlPanel,
+    '/%23sharedWorker':                 sharedWorker,
+    '/%23sharedWorkerForChromeMobile':  sharedWorkerForChromeMobile,
 }

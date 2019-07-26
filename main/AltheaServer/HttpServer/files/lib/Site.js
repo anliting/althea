@@ -15,7 +15,7 @@ function Site(){
         (new SharedWorker('%23sharedWorker')).port
     :
         // for chrome
-        new Worker('sharedWorkerForChromeMobile.static.js')
+        new Worker('%23sharedWorkerForChromeMobile')
     this._sharedWorkerPort.onmessage=e=>{
         let doc=e.data
         if(doc=='userChange'){
