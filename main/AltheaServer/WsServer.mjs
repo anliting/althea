@@ -3,7 +3,7 @@ import Connection from  './WsServer/Connection.mjs'
 function WsServer(althea){
     this._althea=althea
     this.rawWsServer=
-        new ws.Server({server:this._althea.httpServer.rawHttpServer})
+        new ws.Server({port:this._althea.config.wsPort})
     this.alive=new WeakMap
     this._interval=setInterval(()=>{
         this.rawWsServer.clients.forEach(cn=>{

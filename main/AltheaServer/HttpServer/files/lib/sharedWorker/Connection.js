@@ -40,7 +40,10 @@ Connection.prototype.send=async function(doc){
     }
 }
 function createWs(){
-    let protocol=location.protocol=='http:'?'ws:':'wss:'
-    return new WebSocket(`${protocol}//${location.host}/ws`)
+    return new WebSocket(`${
+        location.protocol=='http:'?'ws:':'wss:'
+    }//${location.hostname}:${
+        self._port
+    }/`)
 }
 export default Connection

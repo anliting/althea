@@ -593,7 +593,7 @@ function Site(){
     this._sendingPortNumber=0;
     this._onMessage={};
     this._sharedWorkerPort=window.SharedWorker?
-        (new SharedWorker('sharedWorker.static.js')).port
+        (new SharedWorker('%23sharedWorker')).port
     :
         // for chrome
         new Worker('sharedWorkerForChromeMobile.static.js');
@@ -635,11 +635,10 @@ Object.setPrototypeOf(Site.prototype,EventEmmiter.prototype);
 Site.prototype.applyPlugins=async function(name,arg){
     return Promise.all((await this.loadPlugins(name)).map(f=>f(arg)))
 };
-
 Site.prototype.loadPlugins=async function(name){
-    return Promise.all(Object.values(
+    return Promise.all((
         await this.send({function:'getPluginScripts',module:name,})
-    ).filter(v=>v).map(async s=>
+    ).map(async s=>
         (await import(s)).default
     ))
 };

@@ -20,8 +20,8 @@ function HttpServer(althea){
     }
     this.load=Promise.all([
         althea.config.pathToUpload!=undefined&&
-            althea.ensureDirectory(`${althea._dataDir}/${althea.config.pathToUpload}`),
-        althea.ensureDirectory(`${althea._dataDir}/${althea.config.pathToUsersFiles}`),
+            althea.ensureDirectory(`${althea.config.pathToUpload}`),
+        althea.ensureDirectory(`${althea.config.pathToUsersFiles}`),
         (async()=>{
             let envVars=await althea.envVars
             this.rawHttpServer.on('connection',con=>{

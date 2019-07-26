@@ -4,8 +4,8 @@ async function uploadImage(env,fields,files){
     let id=fields.id
     await saveFile(env,files.file.path,`img/${id}.jpg`)
     await resize(
-        `${env.althea._dataDir}/${env.config.pathToUsersFiles}/img/${id}.jpg`,
-        `${env.althea._dataDir}/${env.config.pathToUsersFiles}/img/${id}c800x600.jpg`
+        `${env.config.pathToUsersFiles}/img/${id}.jpg`,
+        `${env.config.pathToUsersFiles}/img/${id}c800x600.jpg`
     )
 }
 function resize(rawImage,resizedImage){

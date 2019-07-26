@@ -12,7 +12,7 @@ function Site(){
     this._sendingPortNumber=0
     this._onMessage={}
     this._sharedWorkerPort=window.SharedWorker?
-        (new SharedWorker('sharedWorker.static.js')).port
+        (new SharedWorker('%23sharedWorker')).port
     :
         // for chrome
         new Worker('sharedWorkerForChromeMobile.static.js')
