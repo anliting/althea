@@ -9,10 +9,13 @@ function loadModule(main,args,options={}){
     return`<script>
 !function(){
     ${options.sharedWorker?`
-        if(window.SharedWorker)
-            (new SharedWorker('sharedWorker.static.js')).port
-        else if(window.Worker)
-            new Worker('sharedWorkerForChromeMobile.static.js')
+        window._althea={
+            preventGC:[window.SharedWorker?
+                (new SharedWorker('#23sharedWorker')).port
+            :window.Worker?
+                new Worker('#23sharedWorkerForChromeMobile')
+            :'']
+        }
     `:''}
     var
         overrideBS=     calcOverrideBS()
