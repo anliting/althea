@@ -6,7 +6,7 @@ async function get(env){
         status:200,
         headers:env.headers,
         content:
-`self._port=${env.althea.config.wsPort};${
+`self._port=${env.althea.config.nextWsPort||env.althea.config.wsPort};${
     await fsp.readFile(`${
         env.althea._mainDir
     }/AltheaServer/HttpServer/files/sharedWorker.static.js`)
