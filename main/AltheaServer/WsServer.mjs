@@ -36,7 +36,6 @@ WsServer.prototype._handleConnection=function(cn,req,envVars){
             return
         throw e
     })
-console.log(req.headers)
     new Connection(
         this._althea,
         cn,
