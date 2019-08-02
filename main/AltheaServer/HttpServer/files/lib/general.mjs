@@ -1,2 +1,4 @@
-export default()=>
-    navigator.serviceWorker.register('serviceWorker.static.js')
+export default()=>{
+    if(navigator.serviceWorker)
+        navigator.serviceWorker.register('serviceWorker.static.js')
+}

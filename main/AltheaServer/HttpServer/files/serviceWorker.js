@@ -20,9 +20,7 @@ onfetch=async e=>{
 function toPermanentlyCache(parsedUrl){
     return 'anliting.com'==parsedUrl.host&&(
         /^\/img\//.test(parsedUrl.pathname)
-    )||
-    'cdn.rawgit.com'==parsedUrl.host||
-    'gitcdn.link'==parsedUrl.host
+    )
 }
 function toCacheIfOffline(parsedUrl){
     return 'anliting.com'==parsedUrl.host&&(

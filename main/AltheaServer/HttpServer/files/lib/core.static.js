@@ -678,8 +678,10 @@ Object.defineProperty(browser,'isMobile',{get(){
     return navigator.userAgent.toLowerCase().includes('mobile')
 }});
 
-var general = ()=>
-    navigator.serviceWorker.register('serviceWorker.static.js');
+var general = ()=>{
+    if(navigator.serviceWorker)
+        navigator.serviceWorker.register('serviceWorker.static.js');
+};
 
 let hacker={
     processes:[]
