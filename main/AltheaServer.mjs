@@ -71,6 +71,9 @@ AltheaServer.prototype.allowOrigin=function(envVars,origin){
         this.config.trustOrigin.includes(origin)||
         origin==envVars.trustedOrigin
 }
+AltheaServer.prototype.cutPagemodule=function(k){
+    this.httpServer.cutPagemodule(k)
+}
 AltheaServer.prototype.loadPlugins=loadPlugins
 AltheaServer.prototype.loadModule=loadModule
 async function createLoad(){

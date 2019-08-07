@@ -45,6 +45,13 @@ HttpServer.prototype.addPagemodule=function(k,v){
     else if(typeof k=='string')
         this.pagemodules[k]=v
 }
+HttpServer.prototype.cutPagemodule=function(k){
+    if(typeof k=='function')
+        for(let i=0;i<this.plugins.length;i++)if(this.plugins[i].test==k)
+            this.plugins.splice(i,1)
+    else if(typeof k=='string')
+        delete this.pagemodules[k]
+}
 HttpServer.prototype.end=function(){
     return new Promise((rs,rj)=>{
             this._connection.forEach(con=>con.destroy())

@@ -13,6 +13,12 @@ function loadPlugins(althea,plugins){
         addQueryFunction(k,v){
             althea.addQueryFunction(k,v)
         },
+        cutPagemodule(k){
+            althea.cutPagemodule(k)
+        },
+        cutClientModules(){
+            delete althea.clientPluginModules[this._pluginId]
+        },
         getPlugin(m){
             return althea._getActivatedPluginByModule(m)
         },
@@ -48,7 +54,7 @@ function loadPlugins(althea,plugins){
                     wd=process.cwd(),
                     modulePath=`${wd}${wd!='/'?'/':''}${path}/server.mjs`
                 if(await fileExist(modulePath))
-                    (await import(modulePath)).default(
+                    new(await import(modulePath)).default(
                         new AltheaForPlugin(p.id)
                     )
             }
