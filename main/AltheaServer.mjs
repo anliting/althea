@@ -13,7 +13,6 @@ import loadPlugins from         './AltheaServer/prototype.loadPlugins.mjs'
 import loadModule from          './AltheaServer/prototype.loadModule.mjs'
 function AltheaServer(config,dbconfig){
     this._mainDir=path.dirname((new url.URL(import.meta.url)).pathname)
-    this._dataDir='.'
     if(typeof config.trustOrigin=='string')
         config.trustOrigin=[config.trustOrigin]
     this.config=config
