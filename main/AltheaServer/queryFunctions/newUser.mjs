@@ -9,8 +9,9 @@ export default async(opt,env)=>{
         )
         return 0
     }catch(e){
+console.log(e)
         if(e.name=='usernameIsUsed')
             return 1
-        throw err
+        throw e
     }
 }

@@ -1,17 +1,17 @@
-async function newUser(username){
-    let res=await this.query0(`
+async function putUser(username){
+    return(await this.query0(`
         insert into user
         set ?
     `,{
-        username
-    })
-    return res.insertId
+        username,
+        password:Buffer.alloc(32),
+        nickname:'',
+    })).insertId
 }
 export default async function(username,password){
+    let id
     try{
-        let id=await newUser.call(this,username)
-        let user=await this.getUser(id)
-        return await user.set({password})
+        id=await putUser.call(this,username)
     }catch(err){
         if(err.errno==1062){
             let e=Error('Username is used.')
@@ -20,4 +20,7 @@ export default async function(username,password){
         }
         throw err
     }
+    return await(
+        await this.getUser(id)
+    ).set({password})
 }
