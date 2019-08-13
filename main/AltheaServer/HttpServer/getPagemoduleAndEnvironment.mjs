@@ -5,6 +5,7 @@ import module_page404 from          './pagemodules/404.mjs'
 import module_page405get from       './pagemodules/405get.mjs'
 import module_files from            './pagemodules/files.mjs'
 import checkIfIsFileRequest from './getPagemoduleAndEnvironment/checkIfIsFileRequest.mjs'
+import userAgent from               './userAgent.mjs'
 async function getPagemoduleAndEnvironment(httpServer,req,res,envVars){
     let
         {althea}=httpServer,
@@ -19,10 +20,13 @@ async function getPagemoduleAndEnvironment(httpServer,req,res,envVars){
             response:res,
             headers:{},
             date:new Date,
+            library:{
+                userAgent,
+            },
             analyze:{
                 request:{
                 }
-            }
+            },
         }
     return{
         environment:env,
