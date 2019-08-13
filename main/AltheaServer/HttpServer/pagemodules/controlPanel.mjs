@@ -1,5 +1,4 @@
 function get(env){
-    env.headers['content-type']='text/html;charset=utf-8'
     let userAgent=
         env.library.userAgent.parse(env.request.headers['user-agent'])
     let
@@ -10,7 +9,8 @@ function get(env){
         chromeVersion<=userAgent.chrome||
         firefoxVersion<=userAgent.firefox||
         operaVersion<=userAgent.opr
-    )
+    ){
+        env.headers['content-type']='text/html;charset=utf-8'
         return{
             status:200,
             headers:env.headers,
@@ -25,9 +25,12 @@ ${env.althea.loadModule(
 )}
 `
         }
-    else
+    }else
         return{
             status:400,
+            headers:{
+                'content-type':'text/html;charset=utf-8',
+            },
             content:`<!doctype html>
 <title>User Agent Does Not Support</title>
 <meta name=viewport content='width=device-width,initial-scale=1'>
