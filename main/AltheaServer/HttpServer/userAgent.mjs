@@ -42,8 +42,19 @@ The developers are hard to test <a href=https://www.microsoft.com/en-us/windows/
 `
     }
 }
+function leOr(a,b){
+    for(let i in a)
+        if(a[i]<=b[i])
+            return 1
+    return 0
+}
 let userAgent={
     notSupport,
     parse,
+    version:{
+        esModuleBase:{chrome:61,firefox:60,opera:47},
+        esModuleDynamic:{chrome:63,firefox:67,opera:50},
+    },
+    leOr,
 }
 export default userAgent

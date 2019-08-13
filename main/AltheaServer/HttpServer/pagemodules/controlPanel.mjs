@@ -1,13 +1,10 @@
-let version={chrome:61,firefox:60,opera:48}
 function get(env){
-    let userAgent=
-        env.library.userAgent.parse(env.request.headers['user-agent'])
-    if(!(
-        version.chrome<=userAgent.chrome||
-        version.firefox<=userAgent.firefox||
-        version.opera<=userAgent.opera
+    let ua=env.library.userAgent
+    if(!ua.leOr(
+        ua.version.esModuleBase,
+        ua.parse(env.request.headers['user-agent'])
     ))
-        return userAgent.notSupport(version)
+        return ua.notSupport(ua.version.esModuleBase)
     env.headers['content-type']='text/html;charset=utf-8'
     return{
         status:200,
