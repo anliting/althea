@@ -1,4 +1,4 @@
-import mysql from 'mysql2/promise.js'
+import mysql from 'mysql2/promise'
 function databaseConnector(options){
     return mysql.createPool(Object.assign(options,{
         charset:'utf8mb4_unicode_ci',
