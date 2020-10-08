@@ -1,9 +1,33 @@
+import https from       'https'
 import ws from          'ws'
 import Connection from  './WsServer/Connection.mjs'
 function WsServer(althea){
     this._althea=althea
-    this.rawWsServer=
-        new ws.Server({port:this._althea.config.wsPort})
+    if(this._althea.config.wsTls){
+        let wssHttpsServer=https.createServer(
+            this._althea.config.wsTls
+        ).on('secureConnection',con=>{
+            con.on('error',e=>{
+                if([
+                    'ECONNRESET',
+                    'EPIPE',
+                    'ERR_HTTP_REQUEST_TIMEOUT',
+                    'ERR_SSL_WRONG_VERSION_NUMBER',
+                    'ERR_SSL_APPLICATION_DATA_AFTER_CLOSE_NOTIFY',
+                    'ETIMEDOUT',
+                ].includes(e.code))
+                    return
+                console.error(e)
+                console.trace()
+            })
+        })
+        this.rawWsServer=new ws.Server({
+            server:wssHttpsServer,
+        })
+        wssHttpsServer.listen(this._althea.config.wsPort)
+    }else
+        this.rawWsServer=
+            new ws.Server({port:this._althea.config.wsPort})
     this.alive=new WeakMap
     this._interval=setInterval(()=>{
         this.rawWsServer.clients.forEach(cn=>{

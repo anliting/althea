@@ -13,7 +13,7 @@ function HttpServer(althea){
     if(!this.althea.config.tls){
         this.rawHttpServer=http.createServer()
     }else{
-        this.rawHttpServer=http2.createServer({
+        this.rawHttpServer=http2.createSecureServer({
             key:    fs.readFileSync(this.althea.config.tls.key),
             cert:   fs.readFileSync(this.althea.config.tls.cert),
         })

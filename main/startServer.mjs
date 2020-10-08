@@ -1,6 +1,17 @@
+import fs from              'fs'
 import calcTime from        './anliting/calcTime.mjs'
 import readConfig from      './readConfig.mjs'
 import AltheaServer from    './AltheaServer.mjs'
+async function existFile(p){
+    try{
+        await fs.promises.stat(p)
+        return 1
+    }catch(e){
+        if(!(e.code=='ENOENT'))
+            throw e
+        return 0
+    }
+}
 let options={
     printTime:false,
 }
@@ -10,10 +21,16 @@ for(let v of process.argv.slice(2))switch(v){
         break
 }
 ;(async()=>{
-    let t=await calcTime(()=>{
+    let t=await calcTime(async()=>{
+        let config=readConfig('config')
+        if(await existFile('wsTls'))
+            config.wsTls={
+                key:fs.readFileSync('wsTls/key'),
+                cert:fs.readFileSync('wsTls/crt'),
+            }
         let
             server=new AltheaServer(
-                readConfig('config'),
+                config,
                 readConfig('dbconfig')
             ),
             end=()=>{
@@ -30,4 +47,3 @@ for(let v of process.argv.slice(2))switch(v){
     if(options.printTime)
         console.log(`${t}s`)
 })()
-

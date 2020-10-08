@@ -1,6 +1,5 @@
 {
     "port":80,
-    "ssl":null,
     "root":"/",
     "serverId":1,
     "useCache":true,
