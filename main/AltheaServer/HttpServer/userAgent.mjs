@@ -1,5 +1,6 @@
 let browser={
     chrome:'chrome',
+    edge:'edg',
     firefox:'firefox',
     opera:'opr',
 }
@@ -13,6 +14,8 @@ function parseAs(userAgent){
     let a={}
     for(let b in browser)
         a[b]=getVersion(userAgent,browser[b])
+    if(userAgent.includes('mac os x'))
+        a.safari=getVersion(userAgent,'version')
     return a
 }
 function parse(s){
@@ -38,7 +41,7 @@ The list following by lists the user agents tested by the developers, and believ
 <li><a href=http://www.opera.com/>Opera</a> ${version.opera}
 </ul>
 <p>
-The developers are hard to test <a href=https://www.microsoft.com/en-us/windows/microsoft-edge>Microsoft Edge</a> and <a href=https://www.apple.com/safari/>Safari</a>, because they do not support <a href=https://www.gnu.org/>GNU/Linux</a>.
+The developers are hard to test <a href=https://www.apple.com/safari/>Safari</a>, because they do not support <a href=https://www.gnu.org/>GNU/Linux</a>.
 `
     }
 }
@@ -52,8 +55,8 @@ let userAgent={
     notSupport,
     parse,
     version:{
-        esModuleBase:{chrome:61,firefox:60,opera:47},
-        esModuleDynamic:{chrome:63,firefox:67,opera:50},
+        esModuleBase:{chrome:61,edge:16,firefox:60,opera:47,safari:11},
+        esModuleDynamic:{chrome:63,edge:79,firefox:67,opera:50,safari:12},
     },
     leOr,
 }
