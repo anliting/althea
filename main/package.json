@@ -1,15 +1,16 @@
 {
     "dependencies":{
-        "diskspace":        "*",
-        "entities":         "*",
-        "etag":             "*",
-        "events":           "*",
-        "formidable":       "*",
-        "gm":               "*",
-        "mime":             "*",
-        "mysql2":           "*",
-        "simple-git":       "*",
-        "ws":               "*",
-        "@anliting/cookie": "*"
+        "diskspace":        "",
+        "entities":         "",
+        "etag":             "",
+        "events":           "",
+        "formidable":       "",
+        "gm":               "",
+        "mime":             "",
+        "mysql2":           "",
+        "rollup":           "",
+        "simple-git":       "",
+        "ws":               "",
+        "@anliting/cookie": ""
     }
 }

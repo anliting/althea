@@ -8,7 +8,7 @@ export default async function(usr,pwd,kmli){
         return false
     document.cookie=
         `altheaLoginSession=${res.id}-${res.pwd}; path=/${
-            kmli?`; max-age=${256*365.2564*86400}`:''
+            kmli?`; max-age=${Math.floor(256*365.2564*86400)}`:''
         }`
     this._userChange()
     return true

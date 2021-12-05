@@ -65,7 +65,7 @@ EventEmmiter.prototype._ensureKeyExist=function(key){
 EventEmmiter.prototype.emit=function(key,event){
     if(!this._keyExist(key))
         return
-    for(let[listener,doc]of[...this._listeners[key].entries()]){
+    for(let[listener,doc]of [...this._listeners[key].entries()]){
         if(doc.once)
             this.off(key,listener);
         listener(event);
@@ -101,7 +101,7 @@ var path = {
                 a.push(t);
             }
             res='/'+a.join('/')+(a.length&&s[s.length-1]=='/'?'/':'');
-        }else{
+        }else {
             let a=[];
             for(let t of s.split('/')){
                 if(t==''||t=='.')
@@ -261,7 +261,7 @@ Object.defineProperty(Progress.prototype,'progress',{get(){
     this._progress=val;
     if(val==0){
         this._animationStart=undefined;
-    }else{
+    }else {
         this._animationStart=animationCursor;
         this._animationStartTime=new Date;
     }
@@ -294,7 +294,7 @@ function toFormData(doc){
         formdata.append(i,doc[i]);
     return formdata
 }
-var post = doc=>{
+var post$1 = doc=>{
     let req=new XMLHttpRequest;
     req.open('POST','_api');
     req.send(toFormData(doc));
@@ -373,7 +373,7 @@ User.prototype.createUi=async function(cu){
     )
 };
 
-async function login(usr,pwd,kmli){
+async function login$1(usr,pwd,kmli){
     let res=await this.send({
         function:'login',
         usr,
@@ -383,13 +383,13 @@ async function login(usr,pwd,kmli){
         return false
     document.cookie=
         `altheaLoginSession=${res.id}-${res.pwd}; path=/${
-            kmli?`; max-age=${256*365.2564*86400}`:''
+            kmli?`; max-age=${Math.floor(256*365.2564*86400)}`:''
         }`;
     this._userChange();
     return true
 }
 
-var login$1 = async(site,loginForm)=>{
+var login = async(site,loginForm)=>{
     let res=await loginForm.login(
         loginForm.usernameInput.value,
         loginForm.passwordInput.value,
@@ -413,7 +413,7 @@ function innerFormDiv(site,loginForm){
             return
         e.preventDefault();
         e.stopPropagation();
-        login$1(site,loginForm);
+        login(site,loginForm);
     };
     return div
 }
@@ -461,7 +461,7 @@ function loginButtonDiv(site,loginForm){
         button.style.padding='4px';
         button.onclick=e=>{
             e.stopPropagation();
-            login$1(site,loginForm);
+            login(site,loginForm);
         };
         return button
     }
@@ -568,7 +568,7 @@ function loadUserProperties(o){
         this.send('userChange');
     };
     Object.defineProperty(o,'currentUser',currentUser);
-    o.login=login;
+    o.login=login$1;
     Object.defineProperty(o,'loginForm',loginForm);
     Object.defineProperty(o,'logout',{async get(){
         document.cookie='altheaLoginSession=; path=/; max-age=0';
@@ -604,7 +604,7 @@ function Site(){
         }else if(doc.function=='statusChange'){
             this.status=doc.status;
             this.emit('statusChange');
-        }else{
+        }else {
             if(doc.port in this._onMessage){
                 this._onMessage[doc.port](doc);
                 delete this._onMessage[doc.port];
@@ -645,7 +645,7 @@ Site.prototype.loadPlugins=async function(name){
 Site.prototype.path={
     register:'user',
 };
-Site.prototype.post=post;
+Site.prototype.post=post$1;
 Site.prototype.send=send;
 Site.prototype.createSession=function(){
     let id=this._sendingPortNumber++;
@@ -828,7 +828,7 @@ var integerBinarySearch$1 = Object.assign(
 );
 
 function order(a,ib,ap){
-    post$1(
+    post(
         a.map(async(p,i)=>({
             i,
             v:await p
@@ -838,7 +838,7 @@ function order(a,ib,ap){
         (a,b)=>a.i<b.i
     );
 }
-function post$1(a,ib,ap,lt){
+function post(a,ib,ap,lt){
     let b=[];
     a.map(async e=>{
         e=await e;
@@ -850,7 +850,7 @@ function post$1(a,ib,ap,lt){
         b.splice(p,0,e);
     });
 }
-order.post=post$1;
+order.post=post;
 
 var core = {
     AltheaObject,
@@ -873,5 +873,4 @@ var core = {
     uri,
 };
 
-export default core;
-export { AltheaObject, EventEmmiter, ImageUploader, Progress, Site, Snapshot, User, res as arg, browser, doe$1 as doe, dom, general, hacker, html, load, order, path, uri };
+export { AltheaObject, EventEmmiter, ImageUploader, Progress, Site, Snapshot, User, res as arg, browser, core as default, doe$1 as doe, dom, general, hacker, html, load, order, path, uri };

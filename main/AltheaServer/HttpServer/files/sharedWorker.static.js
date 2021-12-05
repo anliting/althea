@@ -61,7 +61,7 @@ Api.prototype.send=function(doc){
             this._onMessage[doc.port]=(err,res)=>
                 err?rj(err):rs(res)
         )
-    }else{
+    }else {
         this._connection.send([doc.port,doc.function,doc.arguments]);
     }
 };
@@ -137,7 +137,7 @@ Client.prototype._handleMessage=function(port,doc){
             let session=
                 portMap.tabSessionPortToServerSession[doc.port];
             session.send(doc);
-        }else{
+        }else {
             let portNumber=doc.port;
             delete doc.port;
             responseWith(portNumber,this._api.send(doc));
