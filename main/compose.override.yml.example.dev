@@ -1,8 +1,8 @@
 services:
     althea:
         ports:
-            - 80:80
-            - 81:81
+            - "80:80"
+            - "81:81"
         environment:
             - trustOrigin=http://[::1]
         volumes:
