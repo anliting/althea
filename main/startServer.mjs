@@ -22,7 +22,11 @@ for(let v of process.argv.slice(2))switch(v){
 }
 ;(async()=>{
     let t=await calcTime(async()=>{
-        let config=readConfig('config')
+        let config={
+            port:process.env.httpPort,
+            wsPort:process.env.wsPort,
+            trustOrigin:process.env.trustOrigin,
+        }
         if(await existFile('wsTls'))
             config.wsTls={
                 key:fs.readFileSync('wsTls/key'),

@@ -1,0 +1,15 @@
+services:
+    db:
+        image: mariadb:11.3.2
+        volumes:
+            - ./db/cnf:/etc/mysql/conf.d
+            - ./db/data:/var/lib/mysql
+    althea:
+        build:
+            context: althea
+            dockerfile: main/Dockerfile
+        environment:
+            - httpPort=80
+            - wsPort=81
+            - trustOrigin=http://[::1]
+        image: althea
