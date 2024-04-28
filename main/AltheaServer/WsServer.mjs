@@ -1,5 +1,5 @@
 import https from       'https'
-import ws from          'ws'
+import ws,{WebSocketServer}from          'ws'
 import Connection from  './WsServer/Connection.mjs'
 function WsServer(althea){
     this._althea=althea
@@ -21,13 +21,13 @@ function WsServer(althea){
                 console.trace()
             })
         })
-        this.rawWsServer=new ws.Server({
+        this.rawWsServer=new WebSocketServer({
             server:wssHttpsServer,
         })
         wssHttpsServer.listen(this._althea.config.wsPort)
     }else
         this.rawWsServer=
-            new ws.Server({port:this._althea.config.wsPort})
+            new WebSocketServer({port:this._althea.config.wsPort})
     this.alive=new WeakMap
     this._interval=setInterval(()=>{
         this.rawWsServer.clients.forEach(cn=>{
