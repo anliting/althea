@@ -6,8 +6,13 @@ services:
     environment:
       - trustOrigin=http://[::1]
     volumes:
-      - .:/app/althea
+      - ./main:/app/main
       - ./work:/app/work
   db:
     environment:
       - MARIADB_ALLOW_EMPTY_ROOT_PASSWORD=0
+  make:
+    image: althea
+    command: sh -c 'cd /app/althea/main;node make.mjs'
+    volumes:
+      - .:/app/althea

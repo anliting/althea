@@ -1,4 +1,4 @@
-import { doe, html, Site } from './lib/core.static.js';
+import { doe, html, Site } from '/lib/core.static.js';
 
 function PluginsPage(site){
     this._site=site;
