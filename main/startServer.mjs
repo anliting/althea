@@ -1,6 +1,5 @@
 import fs from              'fs'
 import calcTime from        './anliting/calcTime.mjs'
-import readConfig from      './readConfig.mjs'
 import AltheaServer from    './AltheaServer.mjs'
 async function existFile(p){
     try{
@@ -35,7 +34,12 @@ for(let v of process.argv.slice(2))switch(v){
         let
             server=new AltheaServer(
                 config,
-                readConfig('dbconfig')
+                {
+                  host:process.env.dbHost,
+                  user:process.env.dbUser,
+                  password:process.env.dbPassword,
+                  database:process.env.dbDatabase,
+                }
             ),
             end=()=>{
                 process.off('SIGINT',end).off('SIGTERM',end)
