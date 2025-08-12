@@ -1,0 +1,13 @@
+services:
+  althea:
+    ports:
+      - '80:80'
+      - '81:81'
+    environment:
+      - trustOrigin=http://[::1]
+    volumes:
+      - .:/app/althea
+      - ./work:/app/work
+  db:
+    environment:
+      - MARIADB_ALLOW_EMPTY_ROOT_PASSWORD=0
